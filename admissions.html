@@ -456,13 +456,19 @@ async function handleAdmissionSubmit(e) {
   btn.textContent = 'Sending…';
   btn.disabled = true;
   try {
-    const token = await new Promise((resolve, reject) => {
+    const token = await new Promise((resolve) => {
+      if (typeof grecaptcha === 'undefined') {
+        console.warn('reCAPTCHA library not loaded');
+        resolve('');
+        return;
+      }
       grecaptcha.ready(async () => {
         try {
           const t = await grecaptcha.execute('6LeTWR0tAAAAAzpuhbc0ki-UsFWtDgumhl6FSpS', {action: 'admission_submit'});
           resolve(t);
         } catch (err) {
-          reject(err);
+          console.warn('reCAPTCHA token generation failed:', err);
+          resolve('');
         }
       });
     });
