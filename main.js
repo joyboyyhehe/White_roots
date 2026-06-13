@@ -86,19 +86,21 @@ const pbObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.progress-section').forEach(el => pbObserver.observe(el));
 
 // ---- 3D CARD TILT ----
-document.querySelectorAll('.card-3d').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const rotateX = (-y / rect.height) * 12;
-    const rotateY = (x / rect.width) * 12;
-    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.card-3d').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      const rotateX = (-y / rect.height) * 12;
+      const rotateY = (x / rect.width) * 12;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+    });
   });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-  });
-});
+}
 
 // ---- SMOOTH SCROLL ----
 document.querySelectorAll('a[href^="#"]').forEach(link => {

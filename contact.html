@@ -141,8 +141,21 @@
 .lm-card p { font-size:12.5px; color:var(--muted); }
 .lm-dist { display:inline-block; margin-top:.75rem; background:var(--green-pale); color:var(--green); padding:4px 12px; border-radius:100px; font-size:11.5px; font-weight:700; }
 
-@media(max-width:1024px){.cc-grid{grid-template-columns:1fr 1fr;margin-top:2rem}.contact-grid{grid-template-columns:1fr}.lm-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.cc-grid{grid-template-columns:1fr}.cform-row{grid-template-columns:1fr}.lm-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:1024px){
+  .cc-grid{grid-template-columns:1fr 1fr;margin-top:2rem;gap:1.5rem;}
+  .contact-grid{grid-template-columns:1fr; gap: 3rem;}
+  .lm-grid{grid-template-columns:1fr 1fr; gap:1.5rem;}
+}
+@media(max-width:768px){
+  .cc-grid{grid-template-columns:1fr}
+  .cform-row{grid-template-columns:1fr; gap: 1.25rem;}
+  .contact-form-card { padding: 1.5rem; }
+  .info-card { padding: 1.5rem; }
+  .lm-card { padding: 1.25rem; }
+}
+@media(max-width:480px){
+  .lm-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>

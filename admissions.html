@@ -140,7 +140,39 @@
 .faq-a { padding:0 1.5rem; max-height:0; overflow:hidden; transition:all .35s ease; font-size:14px; color:var(--muted); line-height:1.8; }
 .faq-item.open .faq-a { max-height:200px; padding:0 1.5rem 1.25rem; }
 
-@media(max-width:1024px){.prog-select-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.fees-grid{grid-template-columns:1fr}.steps-line{display:none}}
+@media(max-width:1024px){
+  .prog-select-grid{grid-template-columns:1fr; gap:1.5rem;}
+  .form-row{grid-template-columns:1fr}
+  .fees-grid{grid-template-columns:1fr; gap:1.5rem;}
+  .steps-line{display:none}
+}
+@media(max-width:768px){
+  .form-card { padding: 1.5rem; }
+  .fee-card { padding: 1.5rem; }
+}
+@media(max-width:576px){
+  .step-item { gap: 1rem; margin-bottom: 2rem; }
+  .step-circle { width: 52px; height: 52px; font-size: 22px; }
+  .step-content { padding-top: 0.5rem; }
+  .faq-q { padding: 1rem; font-size: 14px; }
+  .faq-a { padding: 0 1rem; }
+  .faq-item.open .faq-a { padding: 1rem; }
+}
+@media(max-width:480px){
+  .seats-bar {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border-radius: 18px;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+  }
+  .seats-track {
+    min-width: auto;
+    width: 100%;
+  }
+}
 </style>
 </head>
 <body>
