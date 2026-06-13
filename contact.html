@@ -271,7 +271,7 @@
     <!-- CONTACT FORM — emails to whitefield@whiterootsacademy.com via Formspree -->
     <div class="contact-form-card reveal-right">
       <form id="contact-form-content"
-            action="https://formspree.io/f/whitefield@whiterootsacademy.com"
+            action="https://formspree.io/f/xdavpjvo"
             method="POST"
             onsubmit="return handleContactSubmit(event)">
         <input type="hidden" name="_subject" value="New Contact Enquiry — White Roots Academy" />
@@ -297,8 +297,6 @@
           <div class="cform-group"><label>Child's Age</label><input type="text" name="child_age" placeholder="e.g., 3 years" /></div>
         </div>
         <div class="cform-group"><label>Your Message *</label><textarea name="message" placeholder="Tell us what you'd like to know or ask..." required></textarea></div>
-        <!-- reCAPTCHA v2 -->
-        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-bottom:1.25rem"></div>
         <div class="contact-submit-area">
           <button type="submit" class="btn btn-green" style="font-size:16px;padding:16px 48px;width:100%;justify-content:center">Send Message 🚀</button>
           <p style="font-size:12px;color:var(--muted);margin-top:.875rem">🔒 100% confidential. We never share your information with anyone.</p>
@@ -380,7 +378,7 @@
 
 <button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
 
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LeTWR0tAAAAAzpuhbc0ki-UsFWtDgumhl6FSpS"></script>
 <script src="main.js"></script>
 <script>
 async function handleContactSubmit(e) {
@@ -390,8 +388,21 @@ async function handleContactSubmit(e) {
   btn.textContent = 'Sending…';
   btn.disabled = true;
   try {
+    const token = await new Promise((resolve, reject) => {
+      grecaptcha.ready(async () => {
+        try {
+          const t = await grecaptcha.execute('6LeTWR0tAAAAAzpuhbc0ki-UsFWtDgumhl6FSpS', {action: 'contact_submit'});
+          resolve(t);
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
+
     const data = new FormData(form);
-    const res = await fetch('https://formspree.io/f/whitefield@whiterootsacademy.com', { method:'POST', body:data, headers:{Accept:'application/json'} });
+    data.append('g-recaptcha-response', token);
+
+    const res = await fetch('https://formspree.io/f/xdavpjvo', { method:'POST', body:data, headers:{Accept:'application/json'} });
     if (res.ok) {
       form.style.display = 'none';
       document.getElementById('contact-success').style.display = 'flex';
