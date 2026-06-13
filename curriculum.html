@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="White Roots Academy Curriculum — Sprouting Seeds, Little Saplings & Budding Branches programs. Play-based, holistic early childhood education.">
+<title>Curriculum — White Roots Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#0a1f0d 0%,#1e5c32 55%,#2d7a46 100%); }
+
+/* PROGRAMS HERO GRID */
+.prog-hero-cards { display:flex; flex-direction:column; gap:.875rem; }
+.phc {
+  background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:16px; padding:14px 18px; display:flex; align-items:center; gap:14px;
+  backdrop-filter:blur(10px); cursor:pointer; transition:var(--transition);
+}
+.phc:hover, .phc.phc-active { background:rgba(255,255,255,.2); transform:translateX(6px); }
+.phc-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+.phc-green { background:rgba(255,255,255,.15); }
+.phc-orange { background:rgba(255,100,0,.25); }
+.phc-purple { background:rgba(160,100,255,.25); }
+.phc-text strong { display:block; color:#fff; font-size:14px; font-weight:700; }
+.phc-text span { font-size:12px; color:rgba(255,255,255,.6); }
+
+/* OVERVIEW */
+.overview { background:#fff; }
+.overview-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-top:3rem; }
+.ov-card {
+  border-radius:24px; padding:2.25rem; position:relative; overflow:hidden;
+  transition:transform .35s; cursor:default;
+}
+.ov-card:hover { transform:translateY(-8px) scale(1.01); }
+.ov-1 { background:linear-gradient(135deg,var(--green-pale),#c8f0d8); border:1px solid rgba(26,107,60,.12); }
+.ov-2 { background:linear-gradient(135deg,var(--orange-pale),#ffc998); border:1px solid rgba(240,116,39,.12); }
+.ov-3 { background:linear-gradient(135deg,var(--purple-pale),#d8c8f8); border:1px solid rgba(124,92,191,.12); }
+.ov-icon { font-size:48px; margin-bottom:1rem; display:block; }
+.ov-age { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:.875rem; display:inline-block; }
+.ov-1 .ov-age { color:var(--green); }
+.ov-2 .ov-age { color:var(--orange); }
+.ov-3 .ov-age { color:var(--purple); }
+.ov-card h3 { font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:.75rem; color:var(--dark); }
+.ov-card p { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:1.25rem; }
+.ov-tags { display:flex; flex-wrap:wrap; gap:7px; }
+.ov-tag { font-size:11.5px; font-weight:600; padding:4px 12px; border-radius:100px; }
+.ov-1 .ov-tag { background:rgba(26,107,60,.12); color:var(--green); }
+.ov-2 .ov-tag { background:rgba(240,116,39,.12); color:var(--orange); }
+.ov-3 .ov-tag { background:rgba(124,92,191,.12); color:var(--purple); }
+
+/* DAILY SCHEDULE */
+.schedule { background:var(--cream); }
+.schedule-timeline { display:flex; flex-direction:column; gap:1px; margin-top:2.5rem; }
+.sched-item {
+  display:flex; gap:2rem; align-items:flex-start; padding:1.5rem;
+  background:#fff; border-radius:18px; margin-bottom:.75rem;
+  border:1px solid var(--border); transition:var(--transition); cursor:default;
+  position:relative; overflow:hidden;
+}
+.sched-item:hover { transform:translateX(8px); box-shadow:var(--shadow-md); border-color:var(--green); }
+.sched-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--green); border-radius:4px 0 0 4px; opacity:0; transition:opacity .3s; }
+.sched-item:hover::before { opacity:1; }
+.sched-time { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--green); white-space:nowrap; min-width:100px; padding-top:2px; }
+.sched-emoji { font-size:28px; flex-shrink:0; }
+.sched-content { flex:1; }
+.sched-content strong { font-size:15.5px; font-weight:700; color:var(--dark); display:block; margin-bottom:4px; }
+.sched-content p { font-size:13.5px; color:var(--muted); line-height:1.65; }
+.sched-badge { margin-left:auto; align-self:center; padding:5px 14px; border-radius:100px; font-size:11.5px; font-weight:700; flex-shrink:0; }
+.sb-green { background:var(--green-pale); color:var(--green); }
+.sb-orange { background:var(--orange-pale); color:var(--orange); }
+.sb-sky { background:var(--sky-pale); color:#2a8aaa; }
+.sb-pink { background:var(--pink-pale); color:var(--pink); }
+
+/* SUBJECTS TABS */
+.subjects { background:#fff; }
+.stabs-wrap { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+.stab {
+  display:flex; align-items:center; gap:8px;
+  padding:10px 18px; border-radius:100px; font-size:14px; font-weight:600;
+  background:var(--cream); border:1.5px solid var(--border); cursor:pointer;
+  transition:var(--transition); color:var(--muted);
+}
+.stab:hover, .stab.active {
+  background:var(--green); color:#fff; border-color:var(--green);
+  box-shadow:0 4px 16px var(--green-glow);
+}
+.subject-panel { display:none; }
+.subject-panel.active { display:grid; grid-template-columns:1.2fr 1fr; gap:4rem; align-items:center; animation:fadeIn .4s ease; }
+.sp-visual {
+  border-radius:28px; overflow:hidden; height:380px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:100px; position:relative;
+}
+.sp-activities { display:flex; flex-direction:column; gap:1rem; }
+.sp-activity {
+  display:flex; align-items:flex-start; gap:1rem; padding:1.25rem 1.5rem;
+  border-radius:16px; border:1px solid var(--border); transition:var(--transition);
+}
+.sp-activity:hover { background:var(--green-pale); border-color:rgba(26,107,60,.2); transform:translateX(6px); }
+.sp-activity .sp-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; background:var(--green-pale); }
+.sp-activity h4 { font-size:14.5px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+.sp-activity p { font-size:13px; color:var(--muted); line-height:1.6; }
+.sp-outcomes { background:var(--green-pale); border-radius:20px; padding:1.75rem; margin-top:1.5rem; }
+.sp-outcomes h4 { font-size:14px; font-weight:700; color:var(--green); margin-bottom:.875rem; display:flex; align-items:center; gap:8px; }
+.outcome-list { display:flex; flex-wrap:wrap; gap:.5rem; }
+.outcome-chip { background:#fff; color:var(--text); padding:6px 14px; border-radius:100px; font-size:12.5px; font-weight:600; border:1px solid rgba(26,107,60,.12); }
+
+/* PROGRESS SECTION */
+.progress-section { background:var(--green); padding:5rem 3rem; }
+.prog-bar-grid { display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:3rem; }
+.prog-bar-item { margin-bottom:1rem; }
+.pb-label { display:flex; justify-content:space-between; font-size:14px; font-weight:600; color:#fff; margin-bottom:8px; }
+.pb-track { background:rgba(255,255,255,.15); border-radius:100px; height:10px; overflow:hidden; }
+.pb-fill { height:100%; border-radius:100px; background:linear-gradient(to right, rgba(255,255,255,.6), #fff); transition:width 1.4s cubic-bezier(0.4,0,0.2,1); width:0; }
+
+/* SPECIAL PROGRAMS */
+.special { background:var(--cream); }
+.special-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+.sp-prog-card {
+  background:#fff; border-radius:24px; padding:2rem; border:1px solid var(--border);
+  transition:var(--transition); cursor:default; overflow:hidden; position:relative;
+}
+.sp-prog-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
+.sp-prog-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.spc-1::before { background:linear-gradient(to right,var(--green),var(--green-light)); }
+.spc-2::before { background:linear-gradient(to right,var(--orange),var(--orange-light)); }
+.spc-3::before { background:linear-gradient(to right,var(--sky),#74d0f0); }
+.spc-icon { font-size:44px; margin-bottom:1.25rem; }
+.sp-prog-card h3 { font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--dark); margin-bottom:.625rem; }
+.sp-prog-card p { font-size:13.5px; color:var(--muted); line-height:1.75; margin-bottom:1.25rem; }
+.sp-prog-info { display:flex; gap:.75rem; flex-wrap:wrap; }
+.spi { display:flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--muted); }
+
+@media(max-width:1024px){.overview-row{grid-template-columns:1fr}.subject-panel.active{grid-template-columns:1fr}.sp-visual{display:none}.prog-bar-grid{grid-template-columns:1fr}.special-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.special-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+    <li><a href="curriculum.html" class="active">Curriculum</a></li>
+    <li><a href="skills.html">21st Century Skills</a></li><li><a href="admissions.html">Admissions</a></li>
+    <li><a href="parents.html">Parent Speak</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='admissions.html#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a><a href="about.html">🌿 About Us</a>
+  <a href="curriculum.html" class="active">📚 Curriculum</a>
+  <a href="skills.html">⚡ 21st Century Skills</a><a href="admissions.html">📋 Admissions</a>
+  <a href="parents.html">💬 Parent Speak</a><a href="contact.html">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='admissions.html#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="min-height:480px">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">Curriculum</span></div>
+    <h1>A Curriculum Built for<br><em>Curious Minds</em></h1>
+    <p class="hero-sub">Three beautifully designed programs that meet children exactly where they are — nurturing every dimension of development through play, inquiry, and joy.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">🌱 Ages 2–5</div>
+      <div class="hero-pill">🧠 Holistic Development</div>
+      <div class="hero-pill">🎯 Outcome-Based</div>
+    </div>
+  </div>
+  <div>
+    <div class="prog-hero-cards">
+      <div class="phc phc-active">
+        <div class="phc-icon phc-green">🌱</div>
+        <div class="phc-text"><strong>Sprouting Seeds</strong><span>Ages 2–3 · Sensory & Play</span></div>
+      </div>
+      <div class="phc">
+        <div class="phc-icon phc-orange">🌿</div>
+        <div class="phc-text"><strong>Little Saplings</strong><span>Ages 3–4 · Creative & Social</span></div>
+      </div>
+      <div class="phc">
+        <div class="phc-icon phc-purple">🌳</div>
+        <div class="phc-text"><strong>Budding Branches</strong><span>Ages 4–5 · Academic Readiness</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="overview">
+  <div style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag" style="display:inline-flex">📚 Three Programs</div>
+    <h2 class="section-title reveal">Learning Designed for <em>Every Stage</em></h2>
+    <p class="section-sub reveal" style="max-width:500px;margin:.5rem auto 0">Each program is a distinct world of learning tailored to what children need most at that particular stage of development.</p>
+  </div>
+  <div class="overview-row">
+    <div class="ov-card ov-1 reveal rd1 card-3d">
+      <span class="ov-icon">🌱</span>
+      <span class="ov-age">Ages 2–3 Years</span>
+      <h3>Sprouting Seeds</h3>
+      <p>The gentlest introduction to learning. Warm, sensory-rich experiences that help toddlers separate from home, explore freely, and build their very first friendships.</p>
+      <div class="ov-tags">
+        <span class="ov-tag">Sensory Play</span><span class="ov-tag">Music</span>
+        <span class="ov-tag">Movement</span><span class="ov-tag">Social Skills</span>
+        <span class="ov-tag">Motor Skills</span><span class="ov-tag">Language</span>
+      </div>
+    </div>
+    <div class="ov-card ov-2 reveal rd2 card-3d">
+      <span class="ov-icon">🌿</span>
+      <span class="ov-age">Ages 3–4 Years</span>
+      <h3>Little Saplings</h3>
+      <p>The year of independence and imagination. Children express themselves through art, stories, dramatic play, and early mathematical thinking while building confidence.</p>
+      <div class="ov-tags">
+        <span class="ov-tag">Independence</span><span class="ov-tag">Storytelling</span>
+        <span class="ov-tag">Art & Craft</span><span class="ov-tag">Pre-Math</span>
+        <span class="ov-tag">Drama</span><span class="ov-tag">Science Curiosity</span>
+      </div>
+    </div>
+    <div class="ov-card ov-3 reveal rd3 card-3d">
+      <span class="ov-icon">🌳</span>
+      <span class="ov-age">Ages 4–5 Years</span>
+      <h3>Budding Branches</h3>
+      <p>The bridge to formal learning. A rich, structured program that builds literacy, numeracy, critical thinking, and all the 21st century skills children need for Grade 1.</p>
+      <div class="ov-tags">
+        <span class="ov-tag">Reading Ready</span><span class="ov-tag">Numeracy</span>
+        <span class="ov-tag">Writing</span><span class="ov-tag">Critical Thinking</span>
+        <span class="ov-tag">Collaboration</span><span class="ov-tag">Tech Literacy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY SCHEDULE -->
+<section class="schedule">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag" style="display:inline-flex">🕘 A Day in the Life</div>
+    <h2 class="section-title reveal">A Day Full of <em>Wonder</em></h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Our carefully crafted daily schedule balances structured learning with free exploration, movement, and rest.</p>
+  </div>
+  <div class="schedule-timeline">
+    <div class="sched-item reveal rd1"><div class="sched-time">9:00 AM</div><div class="sched-emoji">👋</div><div class="sched-content"><strong>Morning Circle & Welcome</strong><p>Greetings, calendar, weather, news sharing, and morning songs to set a joyful tone for the day.</p></div><span class="sched-badge sb-green">20 mins</span></div>
+    <div class="sched-item reveal rd2"><div class="sched-time">9:20 AM</div><div class="sched-emoji">🔤</div><div class="sched-content"><strong>Language & Literacy</strong><p>Phonics, storytelling, vocabulary building, listening exercises, and early writing activities.</p></div><span class="sched-badge sb-sky">40 mins</span></div>
+    <div class="sched-item reveal rd3"><div class="sched-time">10:00 AM</div><div class="sched-emoji">🔢</div><div class="sched-content"><strong>Mathematics & Logical Thinking</strong><p>Hands-on number sense, sorting, patterns, shapes, and early problem-solving through manipulatives.</p></div><span class="sched-badge sb-orange">35 mins</span></div>
+    <div class="sched-item reveal rd4"><div class="sched-time">10:35 AM</div><div class="sched-emoji">🍎</div><div class="sched-content"><strong>Snack Break & Social Time</strong><p>Healthy snack, sharing conversation, and building social etiquette in a warm community setting.</p></div><span class="sched-badge sb-pink">20 mins</span></div>
+    <div class="sched-item reveal rd5"><div class="sched-time">10:55 AM</div><div class="sched-emoji">🎨</div><div class="sched-content"><strong>Creative Arts & Expression</strong><p>Painting, clay, music, drama, or craft — children express their inner worlds in multiple ways.</p></div><span class="sched-badge sb-green">45 mins</span></div>
+    <div class="sched-item reveal rd6"><div class="sched-time">11:40 AM</div><div class="sched-emoji">🌳</div><div class="sched-content"><strong>Outdoor Play & Physical Education</strong><p>Gross motor activities, nature walks, team games, yoga, and free play in our safe outdoor area.</p></div><span class="sched-badge sb-sky">35 mins</span></div>
+    <div class="sched-item reveal rd1"><div class="sched-time">12:15 PM</div><div class="sched-emoji">🔬</div><div class="sched-content"><strong>Science & Discovery Zone</strong><p>Simple experiments, nature exploration, sensory activities, and guided inquiry-based projects.</p></div><span class="sched-badge sb-orange">30 mins</span></div>
+    <div class="sched-item reveal rd2"><div class="sched-time">12:45 PM</div><div class="sched-emoji">🌙</div><div class="sched-content"><strong>Wind Down, Story & Dismissal</strong><p>A calming story, reflection on the day's learning, goodbye songs, and warm parent handover.</p></div><span class="sched-badge sb-pink">15 mins</span></div>
+  </div>
+</section>
+
+<!-- SUBJECTS TABS -->
+<section class="subjects">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag" style="display:inline-flex">📖 Curriculum Domains</div>
+    <h2 class="section-title reveal">What Children Learn<br>&amp; How They <em>Learn It</em></h2>
+  </div>
+  <div class="stabs-wrap">
+    <button class="stab active" onclick="switchTab('lang',this)">🔤 Language &amp; Literacy</button>
+    <button class="stab" onclick="switchTab('math',this)">🔢 Mathematics</button>
+    <button class="stab" onclick="switchTab('science',this)">🔬 Science &amp; Nature</button>
+    <button class="stab" onclick="switchTab('art',this)">🎨 Creative Arts</button>
+    <button class="stab" onclick="switchTab('social',this)">🤝 Social Skills</button>
+    <button class="stab" onclick="switchTab('pe',this)">🏃 Physical Education</button>
+  </div>
+
+  <div class="subject-panel active" id="panel-lang">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--green-pale),#b0e8c8)">📖</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Language & Literacy</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">🔤</div><div><h4>Phonics & Letter Recognition</h4><p>Systematic phonics using songs, flashcards, and hands-on letter tracing activities.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">📚</div><div><h4>Storytelling & Comprehension</h4><p>Daily read-alouds with guided questions to build comprehension and narrative thinking.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">✏️</div><div><h4>Pre-Writing Skills</h4><p>Fine motor exercises, pencil grip training, and pattern writing on sand, clay, and paper.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🗣️</div><div><h4>Oral Language Development</h4><p>Circle time sharing, show & tell, puppet theater, and vocabulary-building conversations.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Letter Recognition</span><span class="outcome-chip">Phonemic Awareness</span><span class="outcome-chip">Early Reading</span><span class="outcome-chip">Vocabulary Building</span><span class="outcome-chip">Listening Skills</span><span class="outcome-chip">Pre-Writing</span></div></div>
+    </div>
+  </div>
+
+  <div class="subject-panel" id="panel-math">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--orange-pale),#ffc998)">🔢</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Mathematics</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">🔢</div><div><h4>Number Sense & Counting</h4><p>Counting with physical objects, number songs, and one-to-one correspondence activities.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🔷</div><div><h4>Shapes & Spatial Awareness</h4><p>Identifying 2D and 3D shapes through building, sorting, and real-world shape hunts.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🎯</div><div><h4>Patterns & Logical Sequencing</h4><p>Creating, extending, and identifying patterns using colors, shapes, and everyday objects.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">⚖️</div><div><h4>Measurement & Comparison</h4><p>Comparing sizes, weights, and lengths using non-standard units and hands-on measurement tools.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Number 1–100</span><span class="outcome-chip">Basic Operations</span><span class="outcome-chip">Shape Recognition</span><span class="outcome-chip">Pattern Logic</span><span class="outcome-chip">Measurement</span><span class="outcome-chip">Problem Solving</span></div></div>
+    </div>
+  </div>
+
+  <div class="subject-panel" id="panel-science">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--sky-pale),#b0dff5)">🔬</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Science & Nature</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">🌱</div><div><h4>Plant Science & Gardening</h4><p>Children grow their own plants, observe life cycles, and learn about nature's incredible processes.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🧪</div><div><h4>Simple Experiments</h4><p>Safe, age-appropriate experiments that build scientific thinking, observation, and wonder.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🌦️</div><div><h4>Weather & Environment</h4><p>Daily weather tracking, seasons, and developing awareness about our beautiful natural world.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🦋</div><div><h4>Animals & Their World</h4><p>Studying animals, habitats, and ecosystems through books, videos, and hands-on models.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Scientific Curiosity</span><span class="outcome-chip">Observation Skills</span><span class="outcome-chip">Environmental Awareness</span><span class="outcome-chip">Hypothesis Forming</span></div></div>
+    </div>
+  </div>
+
+  <div class="subject-panel" id="panel-art">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--pink-pale),#f8c8e0)">🎨</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Creative Arts</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">🖌️</div><div><h4>Visual Arts & Painting</h4><p>Finger painting, watercolors, collage, and mixed media to express feelings and ideas freely.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🎭</div><div><h4>Drama & Role Play</h4><p>Dramatic play and theater that build empathy, language, emotional intelligence, and confidence.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🎵</div><div><h4>Music & Movement</h4><p>Singing, rhythm instruments, movement, and dance that build musical intelligence and coordination.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🏺</div><div><h4>Clay & 3D Art</h4><p>Sculpting with clay develops fine motor skills, spatial reasoning, and creative expression.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Creative Confidence</span><span class="outcome-chip">Fine Motor Skills</span><span class="outcome-chip">Emotional Expression</span><span class="outcome-chip">Aesthetic Sense</span></div></div>
+    </div>
+  </div>
+
+  <div class="subject-panel" id="panel-social">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--teal-pale),#b0e8e2)">🤝</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Social & Emotional Skills</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">💬</div><div><h4>Communication & Sharing</h4><p>Learning to take turns, share, listen, and communicate needs and feelings clearly and kindly.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">❤️</div><div><h4>Empathy & Kindness</h4><p>Stories, discussions, and role-play scenarios that build genuine understanding of others' feelings.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🧘</div><div><h4>Self-Regulation</h4><p>Breathing techniques, calm-down corners, and mindfulness practices for emotional balance.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🏆</div><div><h4>Confidence & Leadership</h4><p>Opportunities for each child to lead, make choices, and experience genuine accomplishment.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Emotional Regulation</span><span class="outcome-chip">Empathy</span><span class="outcome-chip">Conflict Resolution</span><span class="outcome-chip">Self-Confidence</span></div></div>
+    </div>
+  </div>
+
+  <div class="subject-panel" id="panel-pe">
+    <div class="sp-visual" style="background:linear-gradient(135deg,var(--green-pale),#c8f0d8)">🏃</div>
+    <div>
+      <h3 class="section-title" style="font-size:1.75rem;margin-bottom:1.5rem">Physical Education</h3>
+      <div class="sp-activities">
+        <div class="sp-activity"><div class="sp-icon">🏃</div><div><h4>Gross Motor Development</h4><p>Running, jumping, climbing, and balancing activities that build strong, coordinated bodies.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🎾</div><div><h4>Ball Games & Team Sports</h4><p>Age-appropriate team activities that build cooperation, sportsmanship, and physical fitness.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">🧘</div><div><h4>Kids' Yoga & Mindfulness</h4><p>Simple yoga postures, breathing, and mindfulness to build body awareness and calm minds.</p></div></div>
+        <div class="sp-activity"><div class="sp-icon">💃</div><div><h4>Dance & Rhythm</h4><p>Creative movement, folk dance, and rhythm activities that combine physical and musical growth.</p></div></div>
+      </div>
+      <div class="sp-outcomes"><h4>🎯 Learning Outcomes</h4><div class="outcome-list"><span class="outcome-chip">Gross Motor</span><span class="outcome-chip">Fine Motor</span><span class="outcome-chip">Coordination</span><span class="outcome-chip">Balance</span><span class="outcome-chip">Teamwork</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS BARS -->
+<section class="progress-section">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-tag dark" style="display:inline-flex">📊 Developmental Focus</div>
+    <h2 class="section-title reveal" style="color:#fff">What We Prioritize in<br><span style="color:var(--yellow)">Each Program</span></h2>
+    <p style="color:rgba(255,255,255,.7);font-size:15px;margin:.5rem auto 0;max-width:440px">Our curriculum gives intentional weight to each development domain based on what children need most at each age.</p>
+  </div>
+  <div class="prog-bar-grid">
+    <div>
+      <div class="prog-bar-item reveal rd1"><div class="pb-label"><span>🔤 Language & Literacy</span><span>88%</span></div><div class="pb-track"><div class="pb-fill" data-w="88"></div></div></div>
+      <div class="prog-bar-item reveal rd2"><div class="pb-label"><span>🔢 Mathematical Thinking</span><span>80%</span></div><div class="pb-track"><div class="pb-fill" data-w="80"></div></div></div>
+      <div class="prog-bar-item reveal rd3"><div class="pb-label"><span>🎨 Creative Expression</span><span>95%</span></div><div class="pb-track"><div class="pb-fill" data-w="95"></div></div></div>
+    </div>
+    <div>
+      <div class="prog-bar-item reveal rd1"><div class="pb-label"><span>🤝 Social-Emotional</span><span>92%</span></div><div class="pb-track"><div class="pb-fill" data-w="92"></div></div></div>
+      <div class="prog-bar-item reveal rd2"><div class="pb-label"><span>🔬 Science & Curiosity</span><span>75%</span></div><div class="pb-track"><div class="pb-fill" data-w="75"></div></div></div>
+      <div class="prog-bar-item reveal rd3"><div class="pb-label"><span>🏃 Physical Development</span><span>85%</span></div><div class="pb-track"><div class="pb-fill" data-w="85"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL PROGRAMS -->
+<section class="special">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag" style="display:inline-flex">✨ Beyond Curriculum</div>
+    <h2 class="section-title reveal">Special Programs &amp; <em>Activities</em></h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Enrichment experiences that go above and beyond the classroom to nurture the whole child.</p>
+  </div>
+  <div class="special-grid">
+    <div class="sp-prog-card spc-1 reveal rd1 card-3d"><div class="spc-icon">☀️</div><h3>Summer Explorers Camp</h3><p>A 6-week immersive summer program with themes, field trips, cooking, science experiments, and tons of outdoor adventure.</p><div class="sp-prog-info"><span class="spi">📅 June–July</span><span class="spi">⏱ 4 hrs/day</span><span class="spi">👶 Ages 3–6</span></div></div>
+    <div class="sp-prog-card spc-2 reveal rd2 card-3d"><div class="spc-icon">🎨</div><h3>Art Ateliers</h3><p>Inspired by the Reggio Emilia atelier model — specialized art sessions with a resident art educator exploring different media.</p><div class="sp-prog-info"><span class="spi">📅 Year-round</span><span class="spi">⏱ 2x/week</span><span class="spi">👶 All Ages</span></div></div>
+    <div class="sp-prog-card spc-3 reveal rd3 card-3d"><div class="spc-icon">🎭</div><h3>Annual Showcase</h3><p>Our much-loved year-end celebration where every child performs, showcases their artwork, and receives their milestone certificate.</p><div class="sp-prog-info"><span class="spi">📅 March</span><span class="spi">⏱ Full Day</span><span class="spi">👨‍👩‍👧 Family Event</span></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Curious About Our Curriculum?<br>Come Experience It</h2>
+  <p>Book a school visit and watch our curriculum come alive through happy, engaged children.</p>
+  <div class="cta-btns">
+    <a href="admissions.html#enquiry-form" class="btn btn-white">📅 Book a Visit</a>
+    <a href="admissions.html" class="btn btn-outline-white">📋 Apply Now</a>
+  </div>
+</div>
+
+<!-- FOOTER (same as other pages) -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">
+      <div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div>
+    </div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#">📘</a><a href="#">📸</a><a href="#">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds</a><a href="curriculum.html">Little Saplings</a><a href="curriculum.html">Budding Branches</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div></div>
+</footer>
+<div class="footer-bottom"><p>© 2025 White Roots Academy. All rights reserved.</p><p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p></div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
+<script src="main.js"></script>
+</body>
+</html>

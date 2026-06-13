@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About White Roots Academy — our story, mission, vision, team & facilities. Whitefield's most trusted early childhood school since 2017.">
+<title>About Us — White Roots Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#0d2016 0%,var(--green) 55%,#2d8a50 100%); }
+.page-hero::before { content:''; position:absolute; top:-80px; right:-80px; width:400px; height:400px; border-radius:50%; background:rgba(255,255,255,.04); }
+.hero-panel { position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }
+.school-building {
+  width:100%; max-width:380px;
+  background:rgba(255,255,255,.1); border-radius:28px 28px 0 0;
+  padding:2.5rem 2rem 0; backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15); border-bottom:none;
+  display:flex; flex-direction:column; align-items:center; gap:1rem;
+}
+.school-roof { font-size:60px; animation:floatSlow 3s ease-in-out infinite; }
+.school-stats-row { display:flex; gap:1rem; width:100%; }
+.school-stat-box { flex:1; background:rgba(255,255,255,.12); border-radius:14px; padding:14px; text-align:center; border:1px solid rgba(255,255,255,.1); }
+.school-stat-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:#fff; display:block; line-height:1; }
+.school-stat-label { font-size:11px; color:rgba(255,255,255,.6); margin-top:4px; font-weight:500; }
+.since-badge { background:var(--yellow); color:var(--dark); padding:9px 22px; border-radius:100px; font-size:13px; font-weight:700; margin-bottom:.875rem; display:inline-flex; align-items:center; gap:6px; }
+
+/* STORY */
+.story { background:#fff; }
+.story-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.story-images { position:relative; height:460px; }
+.story-img-main {
+  position:absolute; top:0; left:0; width:75%;
+  background:linear-gradient(135deg,var(--green-pale) 0%,#b8e6cc 100%);
+  border-radius:24px; height:280px; display:flex; align-items:center; justify-content:center; font-size:80px;
+  box-shadow:var(--shadow-lg); animation:floatSlow 4s ease-in-out infinite;
+}
+.story-img-sec {
+  position:absolute; bottom:0; right:0; width:60%;
+  background:linear-gradient(135deg,var(--orange-pale) 0%,#ffd4b0 100%);
+  border-radius:24px; height:220px; display:flex; align-items:center; justify-content:center; font-size:64px;
+  box-shadow:var(--shadow-lg); animation:floatSlow 3.5s ease-in-out infinite .8s;
+}
+.story-badge {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  background:var(--green); color:#fff; width:88px; height:88px; border-radius:50%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif; font-weight:900;
+  box-shadow:0 8px 32px rgba(26,107,60,.4); border:4px solid #fff; z-index:2;
+}
+.story-badge big { font-size:1.5rem; line-height:1; }
+.story-badge small { font-size:9px; letter-spacing:1px; text-transform:uppercase; opacity:.8; }
+.story-content { display:flex; flex-direction:column; gap:1.5rem; }
+.story-para { font-size:15.5px; color:var(--text); line-height:1.9; }
+.story-highlight {
+  background:var(--green-pale); border-left:4px solid var(--green);
+  padding:1.25rem 1.5rem; border-radius:0 16px 16px 0;
+  font-size:15px; font-style:italic; color:var(--green); line-height:1.75; font-weight:500;
+}
+.story-values { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:.5rem; }
+.value-chip {
+  display:flex; align-items:center; gap:10px;
+  padding:14px 16px; background:var(--cream); border-radius:14px;
+  border:1px solid var(--border); font-size:13.5px; font-weight:600; color:var(--dark);
+  transition:var(--transition); cursor:default;
+}
+.value-chip:hover { background:var(--green-pale); border-color:rgba(26,107,60,.2); transform:scale(1.02); }
+.value-chip span { font-size:20px; }
+
+/* MISSION VISION */
+.mv-section { background:var(--cream); }
+.mv-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-top:3rem; }
+.mv-card { padding:2.75rem; border-radius:28px; position:relative; overflow:hidden; transition:transform .3s; cursor:default; }
+.mv-card:hover { transform:translateY(-8px); }
+.mv-card::after { content:''; position:absolute; bottom:-50px; right:-50px; width:140px; height:140px; border-radius:50%; background:rgba(255,255,255,.07); }
+.mv-card-mission { background:linear-gradient(135deg,var(--green),var(--green-dark)); color:#fff; }
+.mv-card-vision { background:#fff; border:1px solid var(--border); }
+.mv-card-values { background:linear-gradient(135deg,var(--orange),#e05a1a); color:#fff; }
+.mv-icon { font-size:44px; margin-bottom:1.25rem; display:block; }
+.mv-card h3 { font-family:'Playfair Display',serif; font-size:1.45rem; margin-bottom:.875rem; }
+.mv-card-mission h3, .mv-card-values h3 { color:#fff; }
+.mv-card-vision h3 { color:var(--dark); }
+.mv-card p { font-size:14.5px; line-height:1.8; }
+.mv-card-vision p { color:var(--muted); }
+.mv-values-list { display:flex; flex-direction:column; gap:.6rem; margin-top:.875rem; }
+.mv-val-item { display:flex; align-items:center; gap:10px; font-size:13.5px; font-weight:600; color:#fff; }
+.mv-val-item::before { content:'✓'; width:20px; height:20px; background:rgba(255,255,255,.2); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; flex-shrink:0; }
+
+/* TEAM */
+.team-section { background:#fff; }
+.team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:2.5rem; }
+.team-card {
+  background:var(--cream); border-radius:22px; overflow:hidden;
+  border:1px solid var(--border); transition:all .4s; cursor:default;
+}
+.team-card:hover { transform:translateY(-10px); box-shadow:var(--shadow-lg); }
+.team-card:hover .team-avatar-wrap { transform:scale(1.06); }
+.team-avatar-wrap { height:165px; display:flex; align-items:center; justify-content:center; font-size:72px; transition:transform .4s; }
+.tc-1 .team-avatar-wrap { background:linear-gradient(135deg,#b8e6cc,var(--green-pale)); }
+.tc-2 .team-avatar-wrap { background:linear-gradient(135deg,#ffd4b0,var(--orange-pale)); }
+.tc-3 .team-avatar-wrap { background:linear-gradient(135deg,#b8d8f8,var(--sky-pale)); }
+.tc-4 .team-avatar-wrap { background:linear-gradient(135deg,#f8c8e0,var(--pink-pale)); }
+.team-info { padding:1.5rem; }
+.team-info h4 { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:3px; }
+.team-role { font-size:12px; font-weight:700; color:var(--green); text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem; }
+.team-info p { font-size:13px; color:var(--muted); line-height:1.65; }
+.team-exp { display:inline-block; margin-top:.875rem; background:var(--green-pale); color:var(--green); padding:4px 12px; border-radius:100px; font-size:11px; font-weight:700; }
+
+/* FACILITIES */
+.facilities { background:var(--green); padding:6rem 3rem; }
+.fac-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:3rem; }
+.fac-card {
+  background:rgba(255,255,255,.08); border-radius:22px; padding:1.875rem;
+  border:1px solid rgba(255,255,255,.12); text-align:center; transition:var(--transition); cursor:default;
+}
+.fac-card:hover { background:rgba(255,255,255,.18); transform:translateY(-6px); }
+.fac-icon { font-size:38px; margin-bottom:.875rem; display:block; }
+.fac-card h4 { font-size:14.5px; font-weight:700; color:#fff; margin-bottom:.5rem; }
+.fac-card p { font-size:12.5px; color:rgba(255,255,255,.65); line-height:1.65; }
+.fac-tag { display:inline-block; margin-top:.875rem; background:rgba(255,255,255,.12); color:rgba(255,255,255,.85); padding:4px 12px; border-radius:100px; font-size:11px; font-weight:600; }
+
+/* LOCATION */
+.location { background:var(--cream); }
+.loc-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+.loc-map { background:#fff; border-radius:24px; padding:2.5rem; border:1px solid var(--border); box-shadow:var(--shadow-sm); }
+.map-embed { background:var(--green-pale); border-radius:16px; height:240px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.875rem; margin-bottom:1.5rem; border:2px dashed rgba(26,107,60,.2); overflow:hidden; }
+.map-embed iframe { width:100%; height:100%; border:none; border-radius:16px; }
+.addr-detail { display:flex; gap:.875rem; align-items:flex-start; margin-bottom:1rem; }
+.addr-icon { width:38px; height:38px; border-radius:10px; background:var(--green-pale); display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+.addr-text { font-size:13.5px; color:var(--text); line-height:1.65; }
+.addr-text strong { color:var(--dark); font-weight:600; display:block; margin-bottom:2px; }
+.timing-box { background:var(--green); border-radius:16px; padding:1.5rem; display:flex; align-items:center; gap:1.25rem; margin-bottom:1.5rem; }
+.timing-box .ti { font-size:36px; }
+.timing-box strong { display:block; font-size:16px; font-weight:700; color:#fff; }
+.timing-box p { font-size:13px; color:rgba(255,255,255,.72); margin-top:4px; }
+.contact-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+
+@media(max-width:1024px){
+  .story-grid,.mv-grid,.loc-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .fac-grid{grid-template-columns:1fr 1fr}
+  .story-images{height:300px}
+}
+@media(max-width:768px){
+  .mv-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .fac-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="curriculum.html">Curriculum</a></li>
+    <li><a href="skills.html">21st Century Skills</a></li>
+    <li><a href="admissions.html">Admissions</a></li>
+    <li><a href="parents.html">Parent Speak</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='admissions.html#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a>
+  <a href="about.html" class="active">🌿 About Us</a>
+  <a href="curriculum.html">📚 Curriculum</a>
+  <a href="skills.html">⚡ 21st Century Skills</a>
+  <a href="admissions.html">📋 Admissions</a>
+  <a href="parents.html">💬 Parent Speak</a>
+  <a href="contact.html">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='admissions.html#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="min-height:500px">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">About Us</span></div>
+    <h1>Where Little Minds<br>Take <em>Root</em> &amp; Bloom</h1>
+    <p class="hero-sub">For over 8 years, White Roots Academy has been Whitefield's most trusted home for early childhood education — built on love, science, and a deep belief in every child's potential.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">🏡 Est. 2017</div>
+      <div class="hero-pill">📍 Whitefield, Bangalore</div>
+      <div class="hero-pill">⭐ 4.9 / 5 Rating</div>
+      <div class="hero-pill">👶 Ages 2–5</div>
+    </div>
+  </div>
+  <div class="hero-panel">
+    <div class="since-badge">🏆 Trusted Since 2017</div>
+    <div class="school-building">
+      <div class="school-roof">🏫</div>
+      <div class="school-stats-row">
+        <div class="school-stat-box">
+          <span class="school-stat-num">200+</span>
+          <div class="school-stat-label">Children Nurtured</div>
+        </div>
+        <div class="school-stat-box">
+          <span class="school-stat-num">15+</span>
+          <div class="school-stat-label">Expert Educators</div>
+        </div>
+        <div class="school-stat-box">
+          <span class="school-stat-num">8+</span>
+          <div class="school-stat-label">Years Strong</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<section class="story">
+  <div class="story-grid">
+    <div class="story-images reveal-left">
+      <div class="story-img-main">🌿</div>
+      <div class="story-img-sec">🎨</div>
+      <div class="story-badge"><big>8+</big><small>Years</small></div>
+    </div>
+    <div class="story-content reveal-right">
+      <div class="section-tag">📖 Our Story</div>
+      <h2 class="section-title">A School Born from<br>a Parent's Heart</h2>
+      <p class="story-para">White Roots Academy was founded with a simple but powerful belief: that the earliest years of a child's life are the most critical — and they deserve nothing less than an environment filled with warmth, wonder, and intentional learning.</p>
+      <div class="story-highlight">"We didn't just want to build a preschool. We wanted to build a second home — a place children would run toward each morning with excitement."</div>
+      <p class="story-para">Located in the heart of Hagadur, Whitefield, our campus is thoughtfully designed to mirror the warmth of a loving home while offering world-class early childhood pedagogy.</p>
+      <div class="story-values">
+        <div class="value-chip"><span>❤️</span> Child-Centered</div>
+        <div class="value-chip"><span>🔬</span> Research-Backed</div>
+        <div class="value-chip"><span>🌍</span> Globally Inspired</div>
+        <div class="value-chip"><span>🤝</span> Parent-Partnered</div>
+        <div class="value-chip"><span>🛡️</span> Safety First</div>
+        <div class="value-chip"><span>🌱</span> Holistic Growth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION / VISION / VALUES -->
+<section class="mv-section">
+  <div style="text-align:center;margin-bottom:.5rem">
+    <div class="section-tag" style="display:inline-flex">🎯 What Drives Us</div>
+    <h2 class="section-title reveal">Our Mission, Vision &amp; Values</h2>
+    <p class="section-sub reveal" style="max-width:520px;margin:.5rem auto 0">Everything we do at White Roots is rooted in three guiding principles that never change.</p>
+  </div>
+  <div class="mv-grid">
+    <div class="mv-card mv-card-mission reveal rd1">
+      <span class="mv-icon">🎯</span>
+      <h3>Our Mission</h3>
+      <p>To create a joyful, inclusive, and stimulating environment where every child between 2 and 5 years develops holistically — intellectually, emotionally, socially, and physically — through play and purposeful learning.</p>
+    </div>
+    <div class="mv-card mv-card-vision reveal rd2">
+      <span class="mv-icon" style="color:var(--green)">🔭</span>
+      <h3>Our Vision</h3>
+      <p style="color:var(--muted)">To be Bangalore's most loved early childhood institution — recognized not just for academic excellence, but for raising confident, curious, compassionate, and future-ready human beings.</p>
+    </div>
+    <div class="mv-card mv-card-values reveal rd3">
+      <span class="mv-icon">💎</span>
+      <h3>Our Values</h3>
+      <div class="mv-values-list">
+        <div class="mv-val-item">Respect for every child's pace</div>
+        <div class="mv-val-item">Joy as a vehicle for learning</div>
+        <div class="mv-val-item">Radical inclusivity</div>
+        <div class="mv-val-item">Partnership with parents</div>
+        <div class="mv-val-item">Continuous teacher growth</div>
+        <div class="mv-val-item">Safety without compromise</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag green" style="display:inline-flex">👩‍🏫 Our People</div>
+    <h2 class="section-title reveal">The Educators Behind<br>Every Smile</h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Trained, certified, and deeply passionate early childhood educators who see teaching as a calling — not just a career.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card tc-1 reveal rd1">
+      <div class="team-avatar-wrap">👩‍🏫</div>
+      <div class="team-info">
+        <h4>Priya Nair</h4>
+        <div class="team-role">Principal &amp; Founder</div>
+        <p>M.Ed in Early Childhood Development. 14+ years in child education. Founded White Roots on the belief that every child is a natural genius.</p>
+        <span class="team-exp">14 Yrs Experience</span>
+      </div>
+    </div>
+    <div class="team-card tc-2 reveal rd2">
+      <div class="team-avatar-wrap">👩‍🎨</div>
+      <div class="team-info">
+        <h4>Meena Sharma</h4>
+        <div class="team-role">Head of Curriculum</div>
+        <p>Specialist in Montessori &amp; Reggio Emilia. Designs every learning experience with deep child psychology principles at its core.</p>
+        <span class="team-exp">10 Yrs Experience</span>
+      </div>
+    </div>
+    <div class="team-card tc-3 reveal rd3">
+      <div class="team-avatar-wrap">🧑‍🔬</div>
+      <div class="team-info">
+        <h4>Anita Reddy</h4>
+        <div class="team-role">Child Psychologist</div>
+        <p>On-campus counselor supporting social-emotional development and helping teachers understand each child's unique inner world.</p>
+        <span class="team-exp">8 Yrs Experience</span>
+      </div>
+    </div>
+    <div class="team-card tc-4 reveal rd4">
+      <div class="team-avatar-wrap">👩‍💻</div>
+      <div class="team-info">
+        <h4>Divya Krishnan</h4>
+        <div class="team-role">21st Century Skills Lead</div>
+        <p>Expert in future-skills pedagogy. Integrates creativity, critical thinking, and digital literacy into everyday classroom experiences.</p>
+        <span class="team-exp">6 Yrs Experience</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section class="facilities">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-tag dark" style="display:inline-flex">🏗️ Our Campus</div>
+    <h2 class="section-title reveal" style="color:#fff">A World Built for<br>Little Explorers</h2>
+    <p style="color:rgba(255,255,255,.7);font-size:16px;margin:.5rem auto 0;max-width:480px">Every square foot of White Roots is designed with child development in mind.</p>
+  </div>
+  <div class="fac-grid">
+    <div class="fac-card reveal rd1"><span class="fac-icon">🏫</span><h4>Spacious Classrooms</h4><p>Bright, airy rooms with child-sized furniture, learning corners, and sensory walls</p><span class="fac-tag">3 Learning Rooms</span></div>
+    <div class="fac-card reveal rd2"><span class="fac-icon">📚</span><h4>Mini Library</h4><p>500+ age-appropriate books, storytelling nook, and quiet reading spaces for curious minds</p><span class="fac-tag">500+ Books</span></div>
+    <div class="fac-card reveal rd3"><span class="fac-icon">🎨</span><h4>Art &amp; Craft Studio</h4><p>Dedicated creative space with unlimited art supplies, clay, and mess-friendly surfaces</p><span class="fac-tag">Daily Sessions</span></div>
+    <div class="fac-card reveal rd4"><span class="fac-icon">🌳</span><h4>Outdoor Playground</h4><p>Safe, rubber-padded outdoor play area with slides, swings, and nature exploration zones</p><span class="fac-tag">Fully Equipped</span></div>
+    <div class="fac-card reveal rd1"><span class="fac-icon">🔬</span><h4>Discovery Zone</h4><p>Science &amp; exploration corner where little scientists experiment, question, and discover</p><span class="fac-tag">Hands-On STEM</span></div>
+    <div class="fac-card reveal rd2"><span class="fac-icon">🎵</span><h4>Music Room</h4><p>Instruments, rhythm activities, and singing sessions that build musical intelligence</p><span class="fac-tag">3x Per Week</span></div>
+    <div class="fac-card reveal rd3"><span class="fac-icon">🍱</span><h4>Nutrition Corner</h4><p>Healthy snack breaks with nutrition education woven into daily routines and habits</p><span class="fac-tag">Healthy Meals</span></div>
+    <div class="fac-card reveal rd4"><span class="fac-icon">🛡️</span><h4>CCTV &amp; Security</h4><p>Full campus CCTV coverage, secured entry points, and trained staff at all times</p><span class="fac-tag">24/7 Monitoring</span></div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-tag" style="display:inline-flex">📍 Find Us</div>
+    <h2 class="section-title reveal">Visit White Roots Academy</h2>
+    <p class="section-sub reveal" style="max-width:440px;margin:.5rem auto 0">Right in the heart of Whitefield — easy to reach, impossible to forget.</p>
+  </div>
+  <div class="loc-grid">
+    <div class="loc-map reveal-left">
+      <div class="map-embed">
+        <span style="font-size:48px">🗺️</span>
+        <p style="font-size:13px;color:var(--muted);text-align:center">Hagadur, Whitefield, Bangalore<br><small>Click below for directions</small></p>
+      </div>
+      <div class="addr-detail"><div class="addr-icon">📍</div><div class="addr-text"><strong>Full Address</strong>No. 01, Suryamalleshwara Krupa, Opp. Veerabhadra Swamy Temple, Krishna Gowda Compound, Hagadur, Whitefield, Bangalore – 560066</div></div>
+      <div class="addr-detail"><div class="addr-icon">🚌</div><div class="addr-text"><strong>Nearby Landmark</strong>Opposite Veerabhadra Swamy Temple, Hagadur Main Road</div></div>
+      <a href="https://maps.google.com/?q=Hagadur,Whitefield,Bangalore" target="_blank" class="btn btn-outline" style="margin-top:1rem;display:inline-flex">📍 Get Directions →</a>
+    </div>
+    <div class="reveal-right">
+      <div class="section-tag green">🕘 Hours &amp; Contact</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--dark);margin-bottom:1rem">We'd Love to<br>Welcome You</h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:1.5rem">Schedule a visit, see the campus, meet our teachers, and let your child explore their future classroom. We welcome you any working day.</p>
+      <div class="timing-box">
+        <span class="ti">🕘</span>
+        <div>
+          <strong>Monday to Friday · 9:00 AM – 6:00 PM</strong>
+          <p>Campus visits welcomed during school hours with prior appointment</p>
+        </div>
+      </div>
+      <div class="contact-btns">
+        <a href="tel:+917676796303" class="btn btn-green">📞 +91-7676796303</a>
+        <a href="contact.html" class="btn btn-outline">✉️ Email Us</a>
+        <a href="https://wa.me/917676796303" target="_blank" class="btn" style="background:#25d366;color:#fff">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to Be Part of<br>the White Roots Family?</h2>
+  <p>Admissions for 2025–26 are open. Seats fill up fast — enquire today.</p>
+  <div class="cta-btns">
+    <a href="admissions.html" class="btn btn-white">📋 Apply for Admission</a>
+    <a href="admissions.html#enquiry-form" class="btn btn-outline-white">📅 Book a Campus Visit</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">
+      <div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div>
+    </div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#" title="Facebook">📘</a><a href="#" title="Instagram">📸</a><a href="#" title="WhatsApp">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds (2–3)</a><a href="curriculum.html">Little Saplings (3–4)</a><a href="curriculum.html">Budding Branches (4–5)</a><a href="curriculum.html">After-School</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr 560066</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📞 +91-9353171956</div></div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2025 White Roots Academy. All rights reserved.</p>
+  <p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p>
+</div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" title="WhatsApp" aria-label="WhatsApp">
+  <div class="wa-pulse"></div>💬
+</button>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Contact White Roots Academy — Call, WhatsApp, email or visit us in Whitefield, Bangalore. Book a school visit. Admissions 2025-26 open.">
+<title>Contact Us — White Roots Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#0a1f0d 0%,var(--teal) 55%,#2dc4b0 100%); min-height:420px !important; align-items:center; }
+.page-hero h1 { font-size:clamp(2rem,4vw,3.2rem); }
+
+/* CONTACT CARDS */
+.contact-cards { background:var(--cream); }
+.cc-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; margin-top:-60px; position:relative; z-index:10; }
+.cc-card {
+  background:#fff; border-radius:24px; padding:2rem; text-align:center;
+  box-shadow:var(--shadow-lg); border:1px solid var(--border);
+  transition:all .4s var(--bounce); cursor:default;
+}
+.cc-card:hover { transform:translateY(-10px); box-shadow:0 24px 70px rgba(0,0,0,.15); }
+.cc-icon {
+  width:70px; height:70px; border-radius:20px; margin:0 auto 1.25rem;
+  display:flex; align-items:center; justify-content:center; font-size:32px;
+  transition:transform .4s var(--bounce);
+}
+.cc-card:hover .cc-icon { transform:scale(1.15) rotate(-8deg); }
+.cc-1 .cc-icon { background:linear-gradient(135deg,#e0f7ea,#b0e8c8); }
+.cc-2 .cc-icon { background:linear-gradient(135deg,#e0f8e8,#c0f0d0); }
+.cc-3 .cc-icon { background:linear-gradient(135deg,var(--sky-pale),#c8e8f8); }
+.cc-4 .cc-icon { background:linear-gradient(135deg,var(--orange-pale),#ffd4a0); }
+.cc-card h3 { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:.5rem; }
+.cc-card p { font-size:13px; color:var(--muted); line-height:1.65; margin-bottom:1.25rem; }
+.cc-action {
+  display:inline-flex; align-items:center; gap:7px; font-size:14px; font-weight:700;
+  color:var(--green); padding:10px 20px; border-radius:100px; background:var(--green-pale);
+  transition:var(--transition); border:none; cursor:pointer; text-decoration:none;
+}
+.cc-action:hover { background:var(--green); color:#fff; }
+
+/* CONTACT MAIN */
+.contact-main { background:var(--cream); padding-top:2rem; }
+.contact-grid { display:grid; grid-template-columns:1fr 1.3fr; gap:4rem; align-items:start; }
+
+/* LEFT — Info Panel */
+.info-panel { display:flex; flex-direction:column; gap:1.5rem; }
+.info-card {
+  background:#fff; border-radius:20px; padding:1.75rem;
+  border:1px solid var(--border); transition:var(--transition);
+}
+.info-card:hover { box-shadow:var(--shadow-md); transform:translateX(6px); }
+.info-card-header { display:flex; align-items:center; gap:12px; margin-bottom:1.25rem; }
+.ic-icon { width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.ic-gr { background:var(--green-pale); }
+.ic-or { background:var(--orange-pale); }
+.ic-sk { background:var(--sky-pale); }
+.info-card-header h4 { font-size:15px; font-weight:700; color:var(--dark); }
+.contact-detail { display:flex; align-items:flex-start; gap:12px; margin-bottom:.875rem; }
+.cd-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+.cd-text strong { display:block; font-size:13px; font-weight:700; color:var(--dark); margin-bottom:2px; }
+.cd-text span { font-size:13px; color:var(--muted); line-height:1.6; }
+.cd-link { font-size:14px; font-weight:600; color:var(--green); transition:color .2s; }
+.cd-link:hover { color:var(--green-light); }
+
+/* SOCIAL ROW */
+.social-row { display:flex; gap:.875rem; flex-wrap:wrap; }
+.soc-btn {
+  display:flex; align-items:center; gap:8px; padding:10px 18px; border-radius:100px;
+  font-size:13.5px; font-weight:700; transition:var(--transition);
+  border:1.5px solid; text-decoration:none; cursor:pointer;
+}
+.soc-fb { color:#1877f2; border-color:rgba(24,119,242,.25); background:rgba(24,119,242,.07); }
+.soc-fb:hover { background:#1877f2; color:#fff; border-color:#1877f2; }
+.soc-ig { color:#e4405f; border-color:rgba(228,64,95,.25); background:rgba(228,64,95,.07); }
+.soc-ig:hover { background:#e4405f; color:#fff; border-color:#e4405f; }
+.soc-wa { color:#25d366; border-color:rgba(37,211,102,.25); background:rgba(37,211,102,.07); }
+.soc-wa:hover { background:#25d366; color:#fff; border-color:#25d366; }
+.soc-yt { color:#ff0000; border-color:rgba(255,0,0,.25); background:rgba(255,0,0,.07); }
+.soc-yt:hover { background:#ff0000; color:#fff; border-color:#ff0000; }
+
+/* TIMINGS TABLE */
+.timings-table { width:100%; }
+.timings-table tr td { padding:8px 0; font-size:13.5px; border-bottom:1px solid var(--border); }
+.timings-table tr:last-child td { border:none; }
+.timings-table tr td:first-child { font-weight:600; color:var(--dark); }
+.timings-table tr td:last-child { color:var(--muted); text-align:right; }
+.timings-table .closed td:last-child { color:var(--red) !important; font-weight:500; }
+
+/* RIGHT — Contact Form */
+.contact-form-card {
+  background:#fff; border-radius:28px; padding:3rem;
+  box-shadow:var(--shadow-lg); border:1px solid var(--border);
+}
+.contact-form-card h2 { font-family:'Playfair Display',serif; font-size:1.9rem; color:var(--dark); margin-bottom:.5rem; }
+.contact-form-card p { color:var(--muted); font-size:14px; margin-bottom:2rem; }
+.cform-group { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1.25rem; }
+.cform-group label { font-size:12.5px; font-weight:700; color:var(--dark); text-transform:uppercase; letter-spacing:.5px; }
+.cform-group input, .cform-group select, .cform-group textarea {
+  padding:13px 18px; border-radius:14px; border:1.5px solid var(--border);
+  font-size:14.5px; font-family:'DM Sans',sans-serif; color:var(--text);
+  background:#fff; transition:border-color .3s, box-shadow .3s; outline:none;
+}
+.cform-group input:focus, .cform-group select:focus, .cform-group textarea:focus {
+  border-color:var(--teal); box-shadow:0 0 0 4px rgba(26,155,138,.1);
+}
+.cform-group textarea { min-height:120px; resize:vertical; }
+.cform-row { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+.enquiry-types { display:flex; flex-wrap:wrap; gap:.625rem; margin-bottom:1.5rem; }
+.enq-type {
+  padding:8px 16px; border-radius:100px; font-size:13px; font-weight:600;
+  border:1.5px solid var(--border); cursor:pointer; transition:var(--transition);
+  background:#fff; color:var(--muted);
+}
+.enq-type:hover, .enq-type.selected {
+  background:var(--teal); color:#fff; border-color:var(--teal);
+}
+.contact-submit-area { text-align:center; padding-top:1rem; }
+#contact-success {
+  display:none; flex-direction:column; align-items:center; gap:1.25rem; text-align:center; padding:2rem;
+}
+.contact-success-icon { font-size:80px; animation:popIn .6s var(--bounce); }
+
+/* MAP SECTION */
+.map-section { background:#fff; }
+.map-wrap {
+  border-radius:28px; overflow:hidden; height:480px;
+  box-shadow:var(--shadow-lg); border:1px solid var(--border);
+  position:relative;
+}
+.map-wrap iframe { width:100%; height:100%; border:0; display:block; }
+.map-btns { display:flex; gap:.875rem; flex-wrap:wrap; justify-content:center; margin-top:1.75rem; }
+
+/* NEARBY LANDMARKS */
+.landmarks { background:var(--cream); }
+.lm-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin-top:2rem; }
+.lm-card { background:#fff; border-radius:18px; padding:1.5rem; border:1px solid var(--border); text-align:center; transition:var(--transition); }
+.lm-card:hover { transform:translateY(-5px); box-shadow:var(--shadow-md); }
+.lm-icon { font-size:36px; margin-bottom:.875rem; }
+.lm-card h4 { font-size:14px; font-weight:700; color:var(--dark); margin-bottom:.375rem; }
+.lm-card p { font-size:12.5px; color:var(--muted); }
+.lm-dist { display:inline-block; margin-top:.75rem; background:var(--green-pale); color:var(--green); padding:4px 12px; border-radius:100px; font-size:11.5px; font-weight:700; }
+
+@media(max-width:1024px){.cc-grid{grid-template-columns:1fr 1fr;margin-top:2rem}.contact-grid{grid-template-columns:1fr}.lm-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.cc-grid{grid-template-columns:1fr}.cform-row{grid-template-columns:1fr}.lm-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+    <li><a href="curriculum.html">Curriculum</a></li><li><a href="skills.html">21st Century Skills</a></li>
+    <li><a href="admissions.html">Admissions</a></li><li><a href="parents.html">Parent Speak</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='admissions.html#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a><a href="about.html">🌿 About Us</a>
+  <a href="curriculum.html">📚 Curriculum</a><a href="skills.html">⚡ 21st Century Skills</a>
+  <a href="admissions.html">📋 Admissions</a><a href="parents.html">💬 Parent Speak</a>
+  <a href="contact.html" class="active">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='admissions.html#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">Contact</span></div>
+    <h1>We'd Love to<br><em>Hear from You</em></h1>
+    <p class="hero-sub">Whether you have a question, want to book a school visit, or are ready to begin your child's enrollment — we're just a call or message away.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">⚡ Respond within 4 Hours</div>
+      <div class="hero-pill">📞 Mon–Fri 9AM–6PM</div>
+      <div class="hero-pill">💬 WhatsApp Always Open</div>
+    </div>
+  </div>
+  <div style="position:relative;z-index:2;text-align:center">
+    <div style="background:rgba(255,255,255,.12);border-radius:24px;padding:2.5rem;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px)">
+      <div style="font-size:64px;margin-bottom:1rem;animation:floatSlow 3s ease-in-out infinite">📍</div>
+      <strong style="color:#fff;font-size:16px;display:block;margin-bottom:.5rem">Hagadur, Whitefield</strong>
+      <p style="color:rgba(255,255,255,.65);font-size:13px;line-height:1.6">No. 01, Suryamalleshwara Krupa,<br>Opp. Veerabhadra Swamy Temple,<br>Bangalore – 560066</p>
+      <a href="https://maps.google.com/?q=Hagadur,Whitefield,Bangalore" target="_blank" class="btn btn-white" style="margin-top:1.25rem;font-size:13.5px;padding:10px 22px">📍 Get Directions →</a>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK CONTACT CARDS -->
+<section class="contact-cards" style="padding-top:4rem">
+  <div class="cc-grid">
+    <div class="cc-card cc-1 reveal rd1">
+      <div class="cc-icon">📞</div>
+      <h3>Call Us Directly</h3>
+      <p>Speak to our admissions team right away. Available Mon–Fri, 9 AM – 6 PM.</p>
+      <a href="tel:+917676796303" class="cc-action">+91-7676796303 →</a>
+    </div>
+    <div class="cc-card cc-2 reveal rd2">
+      <div class="cc-icon">💬</div>
+      <h3>WhatsApp</h3>
+      <p>The fastest way to reach us! Message anytime, we respond within the hour.</p>
+      <a href="https://wa.me/917676796303" target="_blank" class="cc-action">Chat Now →</a>
+    </div>
+    <div class="cc-card cc-3 reveal rd3">
+      <div class="cc-icon">📧</div>
+      <h3>Email Us</h3>
+      <p>Send us a detailed message and we'll respond within 24 working hours.</p>
+      <a href="mailto:whitefield@whiterootsacademy.com" class="cc-action">Send Email →</a>
+    </div>
+    <div class="cc-card cc-4 reveal rd4">
+      <div class="cc-icon">📅</div>
+      <h3>Book a Visit</h3>
+      <p>Schedule a campus tour and let your child experience White Roots firsthand.</p>
+      <a href="admissions.html#enquiry-form" class="cc-action">Book Now →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTACT -->
+<section class="contact-main">
+  <div class="contact-grid">
+    <!-- INFO PANEL -->
+    <div class="info-panel">
+
+      <div class="info-card reveal rd1">
+        <div class="info-card-header"><div class="ic-icon ic-gr">📍</div><h4>Campus Address</h4></div>
+        <div class="contact-detail"><span class="cd-icon">🏫</span><div class="cd-text"><strong>White Roots Academy</strong><span>No. 01, Suryamalleshwara Krupa, Opp. Veerabhadra Swamy Temple, Krishna Gowda Compound, Hagadur, Whitefield, Bangalore – 560066</span></div></div>
+        <div class="contact-detail"><span class="cd-icon">🚌</span><div class="cd-text"><strong>Landmark</strong><span>Opp. Veerabhadra Swamy Temple, Hagadur Main Road</span></div></div>
+        <div class="contact-detail"><span class="cd-icon">🚗</span><div class="cd-text"><strong>Parking</strong><span>Street parking available outside campus gates</span></div></div>
+      </div>
+
+      <div class="info-card reveal rd2">
+        <div class="info-card-header"><div class="ic-icon ic-or">📞</div><h4>Phone &amp; Email</h4></div>
+        <div class="contact-detail"><span class="cd-icon">📱</span><div class="cd-text"><strong>Primary Number</strong><a href="tel:+917676796303" class="cd-link">+91-7676796303</a></div></div>
+        <div class="contact-detail"><span class="cd-icon">📱</span><div class="cd-text"><strong>Secondary Number</strong><a href="tel:+919353171956" class="cd-link">+91-9353171956</a></div></div>
+        <div class="contact-detail"><span class="cd-icon">📧</span><div class="cd-text"><strong>Email</strong><a href="mailto:whitefield@whiterootsacademy.com" class="cd-link">whitefield@whiterootsacademy.com</a></div></div>
+        <div class="contact-detail"><span class="cd-icon">💬</span><div class="cd-text"><strong>WhatsApp</strong><a href="https://wa.me/917676796303" target="_blank" class="cd-link">Message us on WhatsApp →</a></div></div>
+      </div>
+
+      <div class="info-card reveal rd3">
+        <div class="info-card-header"><div class="ic-icon ic-sk">🕘</div><h4>Office Hours</h4></div>
+        <table class="timings-table">
+          <tr><td>Monday</td><td>9:00 AM – 6:00 PM</td></tr>
+          <tr><td>Tuesday</td><td>9:00 AM – 6:00 PM</td></tr>
+          <tr><td>Wednesday</td><td>9:00 AM – 6:00 PM</td></tr>
+          <tr><td>Thursday</td><td>9:00 AM – 6:00 PM</td></tr>
+          <tr><td>Friday</td><td>9:00 AM – 6:00 PM</td></tr>
+          <tr class="closed"><td>Saturday</td><td>Closed</td></tr>
+          <tr class="closed"><td>Sunday</td><td>Closed</td></tr>
+        </table>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:1rem">⚡ WhatsApp responses even on weekends during enquiry season</p>
+      </div>
+
+      <div class="info-card reveal rd4">
+        <div class="info-card-header"><div class="ic-icon" style="background:var(--purple-pale);font-size:20px">📱</div><h4>Follow Us</h4></div>
+        <div class="social-row">
+          <a href="#" class="soc-btn soc-fb">📘 Facebook</a>
+          <a href="#" class="soc-btn soc-ig">📸 Instagram</a>
+          <a href="https://wa.me/917676796303" target="_blank" class="soc-btn soc-wa">💬 WhatsApp</a>
+          <a href="#" class="soc-btn soc-yt">▶ YouTube</a>
+        </div>
+        <p style="font-size:13px;color:var(--muted);margin-top:1rem;line-height:1.7">Follow us for daily updates, fun classroom moments, activities, and important announcements!</p>
+      </div>
+    </div>
+
+    <!-- CONTACT FORM — emails to whitefield@whiterootsacademy.com via Formspree -->
+    <div class="contact-form-card reveal-right">
+      <form id="contact-form-content"
+            action="https://formspree.io/f/whitefield@whiterootsacademy.com"
+            method="POST"
+            onsubmit="return handleContactSubmit(event)">
+        <input type="hidden" name="_subject" value="New Contact Enquiry — White Roots Academy" />
+        <input type="hidden" name="_next" value="" />
+        <input type="hidden" name="enquiry_type" id="hidden-enq-type" value="Admission" />
+        <h2>Send Us a Message</h2>
+        <p>We'll get back to you within 4 working hours — we promise!</p>
+        <p style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:.75rem;margin-top:1.5rem">What are you enquiring about?</p>
+        <div class="enquiry-types" id="enq-types">
+          <span class="enq-type selected" onclick="selectType(this,'Admission')">🎒 Admission</span>
+          <span class="enq-type" onclick="selectType(this,'Campus Visit')">📅 Campus Visit</span>
+          <span class="enq-type" onclick="selectType(this,'Curriculum Info')">📚 Curriculum Info</span>
+          <span class="enq-type" onclick="selectType(this,'Fee Details')">💰 Fee Details</span>
+          <span class="enq-type" onclick="selectType(this,'Partnership')">🤝 Partnership</span>
+          <span class="enq-type" onclick="selectType(this,'General Query')">🔮 General Query</span>
+        </div>
+        <div class="cform-row">
+          <div class="cform-group"><label>Your Name *</label><input type="text" name="parent_name" placeholder="Full name" required /></div>
+          <div class="cform-group"><label>Mobile Number *</label><input type="tel" name="mobile" placeholder="+91 00000 00000" required /></div>
+        </div>
+        <div class="cform-row">
+          <div class="cform-group"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" /></div>
+          <div class="cform-group"><label>Child's Age</label><input type="text" name="child_age" placeholder="e.g., 3 years" /></div>
+        </div>
+        <div class="cform-group"><label>Your Message *</label><textarea name="message" placeholder="Tell us what you'd like to know or ask..." required></textarea></div>
+        <!-- reCAPTCHA v2 -->
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-bottom:1.25rem"></div>
+        <div class="contact-submit-area">
+          <button type="submit" class="btn btn-green" style="font-size:16px;padding:16px 48px;width:100%;justify-content:center">Send Message 🚀</button>
+          <p style="font-size:12px;color:var(--muted);margin-top:.875rem">🔒 100% confidential. We never share your information with anyone.</p>
+        </div>
+      </form>
+      <div id="contact-success">
+        <div class="contact-success-icon">✅</div>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--teal)">Message Received!</h3>
+        <p style="color:var(--muted);font-size:15px;max-width:360px;line-height:1.75">Thank you for reaching out! Our team will contact you within 4 working hours. We look forward to welcoming your family to White Roots!</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center">
+          <a href="admissions.html" class="btn btn-green">📋 Apply Now</a>
+          <a href="index.html" class="btn btn-outline">← Back to Home</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag green" style="display:inline-flex">🗺️ Find Us</div>
+    <h2 class="section-title reveal">How to Reach<br><em>White Roots Academy</em></h2>
+    <p class="section-sub reveal" style="max-width:460px;margin:.5rem auto 0">No. 01, Suryamalleshwara Krupa, Opp. Veerabhadra Swamy Temple, Hagadur, Whitefield, Bangalore – 560066</p>
+  </div>
+  <div class="map-wrap reveal">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1032080373416!2d77.75637051112277!3d12.96524718729675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae0d530b135297%3A0x25b54be0d9baa6cd!2sWhite%20Roots%20Academy%20-%20Best%20preschool%20in%20Whitefield%2C%20Bangalore%3B%20playgroup%3B%20nursery%3B%20kindergarten%3B%20daycare!5e0!3m2!1sen!2sin!4v1781330952158!5m2!1sen!2sin"
+      width="100%" height="480"
+      style="border:0;display:block;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="White Roots Academy Location">
+    </iframe>
+  </div>
+  <div class="map-btns">
+    <a href="https://goo.gl/maps/WhiteRootsAcademy" target="_blank" class="btn btn-green">📍 Open in Google Maps</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=White+Roots+Academy+Whitefield+Bangalore" target="_blank" class="btn btn-outline">🚗 Get Directions</a>
+  </div>
+</section>
+
+<!-- LANDMARKS -->
+<section class="landmarks">
+  <div style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag" style="display:inline-flex">🏙️ Nearby Landmarks</div>
+    <h2 class="section-title reveal">Easy to Find,<br>Right in Your <em>Neighborhood</em></h2>
+  </div>
+  <div class="lm-grid">
+    <div class="lm-card reveal rd1"><div class="lm-icon">🛕</div><h4>Veerabhadra Swamy Temple</h4><p>Directly opposite our campus — the most recognizable landmark</p><span class="lm-dist">Directly Opp.</span></div>
+    <div class="lm-card reveal rd2"><div class="lm-icon">🏥</div><h4>Columbia Asia Hospital</h4><p>Whitefield's major hospital, just 2 km from our campus</p><span class="lm-dist">2 km away</span></div>
+    <div class="lm-card reveal rd3"><div class="lm-icon">🛍️</div><h4>Phoenix Marketcity</h4><p>Whitefield's premium shopping mall, easy access point</p><span class="lm-dist">4 km away</span></div>
+    <div class="lm-card reveal rd4"><div class="lm-icon">🚇</div><h4>Whitefield Metro Station</h4><p>Namma Metro's eastern line, well connected to the city</p><span class="lm-dist">5 km away</span></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to Visit<br>White Roots?</h2>
+  <p>We'd love to show you around. Book a campus visit and let the magic speak for itself.</p>
+  <div class="cta-btns">
+    <a href="admissions.html#enquiry-form" class="btn btn-white">📋 Book a Visit</a>
+    <a href="tel:+917676796303" class="btn btn-outline-white">📞 Call Now</a>
+    <a href="https://wa.me/917676796303" target="_blank" class="btn" style="background:#25d366;color:#fff">💬 WhatsApp</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div></div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#">📘</a><a href="#">📸</a><a href="#">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds</a><a href="curriculum.html">Little Saplings</a><a href="curriculum.html">Budding Branches</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr 560066</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📞 +91-9353171956</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div></div>
+</footer>
+<div class="footer-bottom"><p>© 2025 White Roots Academy. All rights reserved.</p><p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p></div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="main.js"></script>
+<script>
+async function handleContactSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('[type=submit]');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const data = new FormData(form);
+    const res = await fetch('https://formspree.io/f/whitefield@whiterootsacademy.com', { method:'POST', body:data, headers:{Accept:'application/json'} });
+    if (res.ok) {
+      form.style.display = 'none';
+      document.getElementById('contact-success').style.display = 'flex';
+    } else {
+      btn.textContent = 'Send Message 🚀';
+      btn.disabled = false;
+      alert('Something went wrong. Please try calling us directly on +91-7676796303.');
+    }
+  } catch(err) {
+    btn.textContent = 'Send Message 🚀';
+    btn.disabled = false;
+    alert('Network error. Please try calling us directly on +91-7676796303.');
+  }
+  return false;
+}
+function selectType(el, type) {
+  document.querySelectorAll('.enq-type').forEach(t => t.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('hidden-enq-type').value = type;
+}
+</script>
+</body>
+</html>

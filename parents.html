@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Parent Speak — Read real reviews from 120+ families who chose White Roots Academy. See what parents say about our preschool in Whitefield, Bangalore.">
+<title>Parent Speak — White Roots Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#1a0d2e 0%,#4a1a7a 50%,#7c5cbf 100%); }
+
+/* RATING HERO CARDS */
+.rating-panel { display:flex; flex-direction:column; gap:1rem; }
+.rating-big {
+  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18);
+  border-radius:20px; padding:2rem; text-align:center; backdrop-filter:blur(10px);
+}
+.rating-number { font-family:'Playfair Display',serif; font-size:4rem; font-weight:900; color:#fff; line-height:1; }
+.rating-stars-big { color:var(--yellow); font-size:22px; letter-spacing:4px; margin:.5rem 0; display:block; }
+.rating-desc { font-size:13px; color:rgba(255,255,255,.65); }
+.rating-row { display:flex; gap:.875rem; }
+.rating-mini {
+  flex:1; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.15);
+  border-radius:16px; padding:1.25rem; text-align:center; backdrop-filter:blur(8px);
+}
+.rm-num { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; color:#fff; line-height:1; display:block; }
+.rm-label { font-size:12px; color:rgba(255,255,255,.6); margin-top:4px; }
+
+/* FILTER TABS */
+.filter-section { background:var(--cream); }
+.filter-tabs { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+.ftab {
+  padding:9px 20px; border-radius:100px; font-size:13.5px; font-weight:600;
+  border:1.5px solid var(--border); cursor:pointer; transition:var(--transition);
+  background:#fff; color:var(--muted);
+}
+.ftab:hover, .ftab.active { background:var(--purple); color:#fff; border-color:var(--purple); box-shadow:0 4px 16px rgba(124,92,191,.3); }
+
+/* TESTIMONIAL CARDS */
+.tcard {
+  display:inline-block; vertical-align:top; width:calc(33.333% - 1rem);
+  background:#fff; border-radius:22px; padding:2rem; margin:.5rem;
+  border:1px solid var(--border); transition:all .4s; cursor:default; position:relative;
+  overflow:hidden;
+}
+.tcard::before {
+  content:'"'; font-family:'Playfair Display',serif; font-size:100px;
+  position:absolute; top:-15px; left:14px; color:rgba(124,92,191,.07);
+  line-height:1; pointer-events:none;
+}
+.tcard:hover { transform:translateY(-10px); box-shadow:0 24px 60px rgba(0,0,0,.12); border-color:rgba(124,92,191,.2); }
+.tcard:hover::after { opacity:1; }
+.tcard::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(to right,var(--purple),#a87aff); opacity:0; transition:opacity .3s; }
+.tc-stars { color:var(--yellow); font-size:16px; letter-spacing:2px; margin-bottom:1.25rem; }
+.tc-quote { font-size:14.5px; color:var(--text); line-height:1.85; margin-bottom:1.5rem; font-style:italic; position:relative; z-index:1; }
+.tc-author { display:flex; align-items:center; gap:12px; padding-top:1rem; border-top:1px solid var(--border); }
+.tc-avatar {
+  width:46px; height:46px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:15px; color:#fff; font-family:'Playfair Display',serif;
+}
+.tc-name { font-size:14.5px; font-weight:700; color:var(--dark); margin-bottom:2px; }
+.tc-child { font-size:12px; color:var(--muted); }
+.tc-badge {
+  position:absolute; top:1.25rem; right:1.25rem;
+  padding:4px 12px; border-radius:100px; font-size:11px; font-weight:700;
+  border:1px solid;
+}
+.badge-green { background:var(--green-pale); color:var(--green); border-color:rgba(26,107,60,.15); }
+.badge-orange { background:var(--orange-pale); color:var(--orange); border-color:rgba(240,116,39,.15); }
+.badge-purple { background:var(--purple-pale); color:var(--purple); border-color:rgba(124,92,191,.15); }
+.badge-sky { background:var(--sky-pale); color:#2a8aaa; border-color:rgba(77,182,232,.2); }
+
+.tcard[data-c="seeds"] .tc-avatar { background:linear-gradient(135deg,var(--green),var(--green-light)); }
+.tcard[data-c="saplings"] .tc-avatar { background:linear-gradient(135deg,var(--orange),var(--orange-light)); }
+.tcard[data-c="branches"] .tc-avatar { background:linear-gradient(135deg,var(--purple),#a87aff); }
+
+/* RATING BREAKDOWN */
+.rating-breakdown { background:#fff; }
+.rb-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; margin-top:3rem; }
+.rb-visual { display:flex; flex-direction:column; gap:1rem; }
+.rb-row { display:flex; align-items:center; gap:1rem; }
+.rb-stars { display:flex; gap:4px; font-size:18px; flex-shrink:0; }
+.rb-track { flex:1; height:12px; background:var(--cream); border-radius:100px; overflow:hidden; }
+.rb-fill { height:100%; background:linear-gradient(to right,var(--yellow),#ffa500); border-radius:100px; transition:width 1.5s ease .3s; width:0; }
+.rb-count { font-size:13px; font-weight:700; color:var(--muted); min-width:40px; text-align:right; }
+.rb-right { display:flex; flex-direction:column; gap:1.5rem; }
+.rb-stat { display:flex; align-items:center; gap:1.25rem; padding:1.5rem; background:var(--cream); border-radius:16px; border:1px solid var(--border); transition:var(--transition); cursor:default; }
+.rb-stat:hover { background:var(--purple-pale); border-color:rgba(124,92,191,.2); transform:translateX(6px); }
+.rbs-icon { font-size:32px; flex-shrink:0; }
+.rbs-text strong { display:block; font-size:15px; font-weight:700; color:var(--dark); margin-bottom:2px; }
+.rbs-text span { font-size:13px; color:var(--muted); }
+
+/* WRITE REVIEW */
+.write-review { background:var(--purple); padding:5rem 3rem; }
+.review-form-card {
+  max-width:680px; margin:3rem auto 0;
+  background:#fff; border-radius:24px; padding:2.5rem;
+  box-shadow:0 24px 80px rgba(0,0,0,.3);
+}
+.star-rating { display:flex; gap:.75rem; margin-bottom:1.25rem; }
+.star-b { font-size:32px; cursor:pointer; transition:transform .2s; filter:grayscale(1) opacity(.3); }
+.star-b:hover, .star-b.lit { filter:none; transform:scale(1.2); }
+.review-form-card textarea { width:100%; padding:13px 16px; border-radius:14px; border:1.5px solid var(--border); font-family:'DM Sans',sans-serif; font-size:14px; min-height:120px; resize:vertical; outline:none; transition:border-color .3s; }
+.review-form-card textarea:focus { border-color:var(--purple); box-shadow:0 0 0 4px rgba(124,92,191,.1); }
+.rev-name-row { display:flex; gap:1rem; margin-bottom:1.25rem; }
+.rev-name-row input { flex:1; padding:12px 16px; border-radius:12px; border:1.5px solid var(--border); font-family:'DM Sans',sans-serif; font-size:14px; outline:none; transition:border-color .3s; }
+.rev-name-row input:focus { border-color:var(--purple); }
+
+/* VIDEO SECTION */
+.video-section { background:var(--cream); }
+.video-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+.video-card {
+  border-radius:20px; overflow:hidden; position:relative; cursor:pointer;
+  transition:var(--transition); aspect-ratio:16/9;
+  display:flex; align-items:center; justify-content:center;
+}
+.video-card:hover { transform:scale(1.04); box-shadow:var(--shadow-lg); }
+.video-card:hover .play-btn { transform:scale(1.2); }
+.vc-1{background:linear-gradient(135deg,#1a3020,#2d9b5a)}
+.vc-2{background:linear-gradient(135deg,#2d1a0a,var(--orange))}
+.vc-3{background:linear-gradient(135deg,#1a1a3a,var(--purple))}
+.play-btn {
+  width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.9);
+  display:flex; align-items:center; justify-content:center; font-size:24px;
+  transition:transform .3s; box-shadow:0 8px 32px rgba(0,0,0,.25); padding-left:4px;
+}
+.vc-label { position:absolute; bottom:0; left:0; right:0; padding:1rem 1.25rem; background:linear-gradient(to top, rgba(0,0,0,.7), transparent); color:#fff; font-size:13px; font-weight:600; }
+
+@media(max-width:1024px){
+  .tcard{width:calc(50% - 1rem)}
+  .rb-grid{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .tcard{width:calc(100% - 1rem)}
+  .video-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+    <li><a href="curriculum.html">Curriculum</a></li><li><a href="skills.html">21st Century Skills</a></li>
+    <li><a href="admissions.html">Admissions</a></li>
+    <li><a href="parents.html" class="active">Parent Speak</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='admissions.html#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a><a href="about.html">🌿 About Us</a>
+  <a href="curriculum.html">📚 Curriculum</a><a href="skills.html">⚡ 21st Century Skills</a>
+  <a href="admissions.html">📋 Admissions</a>
+  <a href="parents.html" class="active">💬 Parent Speak</a>
+  <a href="contact.html">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='admissions.html#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="min-height:480px">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">Parent Speak</span></div>
+    <h1>Heard from<br><em>120+ Families</em><br>Who Trust Us</h1>
+    <p class="hero-sub">The most honest endorsement a school can receive is from the parents who chose it, and the children who love it. Read their stories here.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">⭐ 4.9 / 5.0 Rating</div>
+      <div class="hero-pill">💬 120+ Reviews</div>
+      <div class="hero-pill">❤️ 98% Would Recommend</div>
+    </div>
+  </div>
+  <div class="rating-panel">
+    <div class="rating-big">
+      <div class="rating-number">4.9</div>
+      <span class="rating-stars-big">★★★★★</span>
+      <div class="rating-desc">Average rating from 120+ parent reviews</div>
+    </div>
+    <div class="rating-row">
+      <div class="rating-mini"><span class="rm-num">98%</span><div class="rm-label">Would Recommend</div></div>
+      <div class="rating-mini"><span class="rm-num">120+</span><div class="rm-label">Happy Families</div></div>
+      <div class="rating-mini"><span class="rm-num">8+</span><div class="rm-label">Years Running</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTER + REVIEWS -->
+<section class="filter-section">
+  <div class="filter-tabs">
+    <button class="ftab active" onclick="filter('all',this)">🌟 All Reviews</button>
+    <button class="ftab" onclick="filter('seeds',this)">🌱 Sprouting Seeds (2–3)</button>
+    <button class="ftab" onclick="filter('saplings',this)">🌿 Little Saplings (3–4)</button>
+    <button class="ftab" onclick="filter('branches',this)">🌳 Budding Branches (4–5)</button>
+  </div>
+
+  <!-- Reviews Grid -->
+  <div id="reviews-wrap">
+    <div class="tcard reveal rd1" data-c="seeds">
+      <div class="tc-badge badge-green">🌱 Seeds</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"Watching my daughter walk into school with a huge smile every single day — that's priceless. White Roots has given her confidence I never expected at age 2. The teachers are angels."</p>
+      <div class="tc-author"><div class="tc-avatar">PR</div><div><div class="tc-name">Priya Rao</div><div class="tc-child">Mother of Anya, Sprouting Seeds</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd2" data-c="saplings">
+      <div class="tc-badge badge-orange">🌿 Saplings</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"My son Arjun was extremely shy. Within 3 months at White Roots he was performing on stage and leading his group! The teaching methodology is extraordinary."</p>
+      <div class="tc-author"><div class="tc-avatar">RK</div><div><div class="tc-name">Rahul Kumar</div><div class="tc-child">Father of Arjun, Little Saplings</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd3" data-c="branches">
+      <div class="tc-badge badge-purple">🌳 Branches</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"Our daughter entered Grade 1 completely ready — not just academically but emotionally. She could read, write, and most importantly, navigate friendships gracefully. Thank you White Roots."</p>
+      <div class="tc-author"><div class="tc-avatar">SM</div><div><div class="tc-name">Sunita Menon</div><div class="tc-child">Mother of Riya, Budding Branches</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd1" data-c="saplings">
+      <div class="tc-badge badge-sky">🌿 Saplings</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"The communication from the school is outstanding. We get daily updates, photos, and monthly reports. We always know exactly how Ishaan is doing and growing. It's a true partnership."</p>
+      <div class="tc-author"><div class="tc-avatar">AP</div><div><div class="tc-name">Anita Pillai</div><div class="tc-child">Mother of Ishaan, Little Saplings</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd2" data-c="seeds">
+      <div class="tc-badge badge-green">🌱 Seeds</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"As a working parent, I needed to know my 2-year-old was safe and genuinely cared for. The CCTV access, the constant updates, and the warmth of every teacher gave me complete peace of mind."</p>
+      <div class="tc-author"><div class="tc-avatar">DK</div><div><div class="tc-name">Divya Krishnan</div><div class="tc-child">Mother of Kabir, Sprouting Seeds</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd3" data-c="branches">
+      <div class="tc-badge badge-purple">🌳 Branches</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"The 21st century skills focus is real — not just a buzzword. My son Ayaan can now present his ideas, work with others, and think critically. Skills most adults struggle with!"</p>
+      <div class="tc-author"><div class="tc-avatar">MR</div><div><div class="tc-name">Mukesh Reddy</div><div class="tc-child">Father of Ayaan, Budding Branches</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd1" data-c="saplings">
+      <div class="tc-badge badge-orange">🌿 Saplings</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"We visited 6 preschools before choosing White Roots. The difference was immediately obvious — the child-to-teacher ratio, the classroom design, and the warmth of the principal. Best decision."</p>
+      <div class="tc-author"><div class="tc-avatar">VN</div><div><div class="tc-name">Vijay Nair</div><div class="tc-child">Father of Aisha, Little Saplings</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd2" data-c="branches">
+      <div class="tc-badge badge-purple">🌳 Branches</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"The annual showcase left me in tears — in the best way. Watching my daughter perform with such confidence and joy, knowing White Roots created that — I'm eternally grateful."</p>
+      <div class="tc-author"><div class="tc-avatar">LS</div><div><div class="tc-name">Lakshmi Sharma</div><div class="tc-child">Mother of Prisha, Budding Branches</div></div></div>
+    </div>
+
+    <div class="tcard reveal rd3" data-c="seeds">
+      <div class="tc-badge badge-green">🌱 Seeds</div>
+      <div class="tc-stars">★★★★★</div>
+      <p class="tc-quote">"My twins are in Sprouting Seeds and they couldn't be more different — one is quiet, one is a firecracker. Yet both are treated as individuals and both are thriving. That's real teaching."</p>
+      <div class="tc-author"><div class="tc-avatar">TA</div><div><div class="tc-name">Tanisha Agarwal</div><div class="tc-child">Mother of Rohan & Riya, Seeds</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RATING BREAKDOWN -->
+<section class="rating-breakdown">
+  <div style="text-align:center;margin-bottom:3rem">
+    <div class="section-tag" style="display:inline-flex">📊 What Parents Rate</div>
+    <h2 class="section-title reveal">How We Score Across<br>Every <em>Dimension</em></h2>
+  </div>
+  <div class="rb-grid">
+    <div class="rb-visual progress-section" style="background:none;padding:0">
+      <div class="rb-row"><span class="rb-stars">★★★★★</span><div class="rb-track"><div class="rb-fill pb-fill" data-w="88" style="width:0"></div></div><span class="rb-count">88%</span></div>
+      <div class="rb-row"><span class="rb-stars">★★★★<span style="opacity:.3">★</span></span><div class="rb-track"><div class="rb-fill pb-fill" data-w="8" style="width:0;background:linear-gradient(to right,#ccc,#aaa)"></div></div><span class="rb-count">8%</span></div>
+      <div class="rb-row"><span class="rb-stars">★★★<span style="opacity:.3">★★</span></span><div class="rb-track"><div class="rb-fill pb-fill" data-w="3" style="width:0;background:linear-gradient(to right,#ccc,#aaa)"></div></div><span class="rb-count">3%</span></div>
+      <div class="rb-row"><span class="rb-stars">★★<span style="opacity:.3">★★★</span></span><div class="rb-track"><div class="rb-fill pb-fill" data-w="1" style="width:0;background:linear-gradient(to right,#ccc,#aaa)"></div></div><span class="rb-count">1%</span></div>
+      <div class="rb-row"><span class="rb-stars"><span style="opacity:.3">★★★★</span>★</span><div class="rb-track"><div class="rb-fill pb-fill" data-w="0" style="width:0;background:#ddd"></div></div><span class="rb-count">0%</span></div>
+      <div style="margin-top:2.5rem;padding:1.75rem;background:var(--green-pale);border-radius:20px;border:1px solid rgba(26,107,60,.1)">
+        <p style="font-size:3rem;font-weight:900;font-family:'Playfair Display',serif;color:var(--green);line-height:1;margin-bottom:.25rem">4.9 / 5.0</p>
+        <p style="font-size:14px;color:var(--muted)">Based on 120+ verified parent reviews</p>
+        <p style="font-size:13px;color:var(--green);font-weight:700;margin-top:.875rem">★ 98% of families say they'd recommend White Roots</p>
+      </div>
+    </div>
+    <div class="rb-right">
+      <div class="rb-stat reveal rd1"><span class="rbs-icon">🏫</span><div class="rbs-text"><strong>Teaching Quality</strong><span>Parents rate our teachers 4.9/5 for warmth, skill, and dedication</span></div></div>
+      <div class="rb-stat reveal rd2"><span class="rbs-icon">🛡️</span><div class="rbs-text"><strong>Safety & Security</strong><span>100% of parents feel their child is completely safe at White Roots</span></div></div>
+      <div class="rb-stat reveal rd3"><span class="rbs-icon">📞</span><div class="rbs-text"><strong>Communication</strong><span>Daily updates, monthly reports, and always-available staff — rated 4.8/5</span></div></div>
+      <div class="rb-stat reveal rd4"><span class="rbs-icon">🧠</span><div class="rbs-text"><strong>Curriculum Quality</strong><span>94% of parents noticed significant developmental progress within 2 months</span></div></div>
+      <div class="rb-stat reveal rd5"><span class="rbs-icon">❤️</span><div class="rbs-text"><strong>Child Happiness</strong><span>The #1 thing parents say: "My child wakes up excited to go to school"</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO TESTIMONIALS (Placeholder) -->
+<section class="video-section">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag green" style="display:inline-flex">🎥 Video Stories</div>
+    <h2 class="section-title reveal">Hear It from the<br><em>Families Themselves</em></h2>
+    <p class="section-sub reveal" style="max-width:460px;margin:.5rem auto 0">Video testimonials from real White Roots families sharing their journey.</p>
+  </div>
+  <div class="video-grid">
+    <div class="video-card vc-1 reveal rd1"><div class="play-btn">▶</div><div class="vc-label">Priya's Story — How Anya found her voice</div></div>
+    <div class="video-card vc-2 reveal rd2"><div class="play-btn">▶</div><div class="vc-label">The Kumars — From shy to performing on stage</div></div>
+    <div class="video-card vc-3 reveal rd3"><div class="play-btn">▶</div><div class="vc-label">Graduation Day — Budding Branches 2024</div></div>
+  </div>
+</section>
+
+<!-- WRITE REVIEW -->
+<section class="write-review">
+  <div style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag dark" style="display:inline-flex">✍️ Your Turn</div>
+    <h2 class="section-title reveal" style="color:#fff">Were You a White Roots<br>Family? <em style="color:var(--yellow)">Share Your Story</em></h2>
+    <p style="color:rgba(255,255,255,.7);font-size:15px;margin:.5rem auto;max-width:440px">Your review helps other parents make the right choice for their child.</p>
+  </div>
+  <div class="review-form-card">
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:1.5rem">Write a Review</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:.875rem;font-weight:600">Your overall rating *</p>
+    <div class="star-rating">
+      <span class="star-b" onclick="rate(1)">★</span>
+      <span class="star-b" onclick="rate(2)">★</span>
+      <span class="star-b" onclick="rate(3)">★</span>
+      <span class="star-b" onclick="rate(4)">★</span>
+      <span class="star-b" onclick="rate(5)">★</span>
+    </div>
+    <div class="rev-name-row">
+      <input type="text" placeholder="Your name" />
+      <input type="text" placeholder="Child's program (e.g., Saplings 2024)" />
+    </div>
+    <textarea placeholder="Share your experience at White Roots Academy — what did you love most? How has your child grown?"></textarea>
+    <button class="btn btn-primary" style="margin-top:1.25rem;width:100%;justify-content:center;font-size:16px" onclick="submitRev(this)">Submit My Review 🌟</button>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Join Our Growing<br>Family of Happy Parents</h2>
+  <p>Admissions for 2025–26 are open. Your child's story begins here.</p>
+  <div class="cta-btns">
+    <a href="admissions.html" class="btn btn-white">📋 Apply Now</a>
+    <a href="contact.html" class="btn btn-outline-white">📞 Contact Us</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div></div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#">📘</a><a href="#">📸</a><a href="#">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds</a><a href="curriculum.html">Little Saplings</a><a href="curriculum.html">Budding Branches</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div></div>
+</footer>
+<div class="footer-bottom"><p>© 2025 White Roots Academy. All rights reserved.</p><p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p></div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
+<script src="main.js"></script>
+</body>
+</html>

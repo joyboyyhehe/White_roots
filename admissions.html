@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Admissions at White Roots Academy — Enroll for 2025-26. Learn about our programs, process, fee structure and book a school visit. Ages 2-5.">
+<title>Admissions 2025–26 — White Roots Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#2d1a0a 0%,var(--orange) 55%,#f09040 100%); }
+
+/* SEATS COUNTER */
+.seats-bar {
+  background:var(--orange-pale); border-radius:100px; padding:14px 28px;
+  display:inline-flex; align-items:center; gap:14px; border:1px solid rgba(240,116,39,.2);
+  margin-top:1.5rem;
+}
+.seats-track { flex:1; min-width:180px; height:10px; background:rgba(240,116,39,.15); border-radius:100px; overflow:hidden; }
+.seats-fill { height:100%; border-radius:100px; background:linear-gradient(to right,var(--orange),#e05a10); width:70%; transition:width 1.5s ease 0.5s; }
+.seats-label { font-size:13px; font-weight:700; color:var(--orange); white-space:nowrap; }
+
+/* PROGRAMS SELECT */
+.prog-select { background:#fff; }
+.prog-select-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+.prog-card {
+  border-radius:24px; padding:2.25rem; border:2px solid var(--border);
+  cursor:pointer; transition:all .4s var(--bounce); text-align:center; position:relative;
+}
+.prog-card:hover, .prog-card.selected {
+  border-color:var(--green); box-shadow:0 0 0 4px rgba(26,107,60,.1);
+  transform:translateY(-6px);
+}
+.prog-card.selected::after {
+  content:'✓'; position:absolute; top:-12px; right:-12px;
+  width:30px; height:30px; border-radius:50%; background:var(--green); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:700;
+  box-shadow:0 4px 12px rgba(26,107,60,.35);
+}
+.pc-icon { font-size:52px; display:block; margin-bottom:1rem; }
+.pc-age {
+  display:inline-block; padding:5px 14px; border-radius:100px;
+  font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase;
+  background:var(--green-pale); color:var(--green); margin-bottom:.875rem;
+}
+.prog-card:nth-child(2) .pc-age { background:var(--orange-pale); color:var(--orange); }
+.prog-card:nth-child(3) .pc-age { background:var(--purple-pale); color:var(--purple); }
+.pc-name { font-family:'Playfair Display',serif; font-size:1.35rem; color:var(--dark); margin-bottom:.5rem; }
+.pc-desc { font-size:13.5px; color:var(--muted); line-height:1.7; margin-bottom:1.25rem; }
+.pc-slots { display:flex; justify-content:center; align-items:center; gap:6px; font-size:13px; font-weight:700; }
+.slot-dot { width:10px; height:10px; border-radius:50%; animation:blink 2s infinite; }
+.slot-green { background:var(--green); }
+.slot-orange { background:var(--orange); }
+
+/* PROCESS STEPS */
+.process { background:var(--cream); }
+.steps-wrap { position:relative; margin-top:3rem; }
+.steps-line { position:absolute; left:36px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--green), var(--green-light), rgba(26,107,60,.1)); }
+.step-item { display:flex; gap:2rem; margin-bottom:2.5rem; position:relative; z-index:1; }
+.step-circle {
+  width:72px; height:72px; border-radius:50%; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:28px;
+  border:3px solid #fff; box-shadow:0 4px 20px rgba(0,0,0,.1);
+  transition:var(--transition); cursor:default;
+}
+.step-item:hover .step-circle { transform:scale(1.15) rotate(-5deg); }
+.sc-1{background:linear-gradient(135deg,var(--green-pale),#b0e8c8)}
+.sc-2{background:linear-gradient(135deg,var(--orange-pale),#ffd0a0)}
+.sc-3{background:linear-gradient(135deg,var(--sky-pale),#b0dcf8)}
+.sc-4{background:linear-gradient(135deg,var(--purple-pale),#d0b8ff)}
+.sc-5{background:linear-gradient(135deg,var(--green-pale),#c8f0d8)}
+.step-content { flex:1; padding-top:.875rem; }
+.step-content h4 { font-size:1.1rem; font-weight:700; color:var(--dark); margin-bottom:.5rem; }
+.step-content p { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:.875rem; }
+.step-tag { display:inline-block; font-size:12px; font-weight:700; padding:5px 14px; border-radius:100px; }
+
+/* FORM SECTION */
+.form-section { background:#fff; }
+.form-card {
+  max-width:760px; margin:2.5rem auto 0;
+  background:#fff; border-radius:28px; padding:3rem;
+  box-shadow:var(--shadow-lg); border:1px solid var(--border);
+}
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+.form-group { display:flex; flex-direction:column; gap:.5rem; }
+.form-group label { font-size:13px; font-weight:700; color:var(--dark); text-transform:uppercase; letter-spacing:.5px; }
+.form-group input, .form-group select, .form-group textarea {
+  padding:13px 18px; border-radius:14px; border:1.5px solid var(--border);
+  font-size:14.5px; font-family:'DM Sans',sans-serif; color:var(--text);
+  background:#fff; transition:var(--transition); outline:none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color:var(--green); box-shadow:0 0 0 4px rgba(26,107,60,.1);
+}
+.form-group textarea { min-height:100px; resize:vertical; }
+.form-divider { border:none; border-top:1.5px solid var(--border); margin:1.5rem 0; }
+.form-submit-area { text-align:center; }
+.form-note { font-size:12px; color:var(--muted); margin-top:.875rem; }
+#form-success {
+  display:none; flex-direction:column; align-items:center; gap:1.25rem;
+  text-align:center; padding:2rem;
+}
+#form-success .success-icon { font-size:80px; animation:popIn .6s var(--bounce); }
+#form-success h3 { font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--green); }
+#form-success p { color:var(--muted); font-size:15px; max-width:380px; line-height:1.7; }
+
+/* FEES */
+.fees { background:var(--cream); }
+.fees-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:2.5rem; }
+.fee-card {
+  background:#fff; border-radius:24px; padding:2.25rem;
+  border:1px solid var(--border); transition:var(--transition); cursor:default;
+  position:relative; overflow:hidden; text-align:center;
+}
+.fee-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; }
+.fc-gr::before { background:linear-gradient(to right,var(--green),var(--green-light)); }
+.fc-or::before { background:linear-gradient(to right,var(--orange),var(--orange-light)); }
+.fc-pu::before { background:linear-gradient(to right,var(--purple),#a87aff); }
+.fee-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
+.fee-prog-name { font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:.625rem; }
+.fee-amount { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:900; color:var(--dark); line-height:1; margin-bottom:.25rem; }
+.fee-period { font-size:13px; color:var(--muted); }
+.fee-includes { display:flex; flex-direction:column; gap:.625rem; margin:1.5rem 0; }
+.fi { display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--text); }
+.fi::before { content:'✓'; width:20px; height:20px; border-radius:6px; background:var(--green-pale); color:var(--green); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0; }
+.fee-note { font-size:12px; color:var(--muted); margin-top:1.5rem; border-top:1px solid var(--border); padding-top:1rem; }
+
+/* FAQs */
+.faqs { background:#fff; }
+.faq-list { max-width:760px; margin:2.5rem auto 0; display:flex; flex-direction:column; gap:1rem; }
+.faq-item { border-radius:18px; border:1px solid var(--border); overflow:hidden; }
+.faq-q {
+  padding:1.25rem 1.5rem; font-size:15px; font-weight:600; color:var(--dark);
+  cursor:pointer; display:flex; justify-content:space-between; align-items:center;
+  background:#fff; transition:var(--transition);
+}
+.faq-q:hover { background:var(--cream); }
+.faq-arrow { font-size:18px; transition:transform .3s; }
+.faq-item.open .faq-arrow { transform:rotate(180deg); }
+.faq-a { padding:0 1.5rem; max-height:0; overflow:hidden; transition:all .35s ease; font-size:14px; color:var(--muted); line-height:1.8; }
+.faq-item.open .faq-a { max-height:200px; padding:0 1.5rem 1.25rem; }
+
+@media(max-width:1024px){.prog-select-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.fees-grid{grid-template-columns:1fr}.steps-line{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+    <li><a href="curriculum.html">Curriculum</a></li><li><a href="skills.html">21st Century Skills</a></li>
+    <li><a href="admissions.html" class="active">Admissions</a></li>
+    <li><a href="parents.html">Parent Speak</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a><a href="about.html">🌿 About Us</a>
+  <a href="curriculum.html">📚 Curriculum</a><a href="skills.html">⚡ 21st Century Skills</a>
+  <a href="admissions.html" class="active">📋 Admissions</a>
+  <a href="parents.html">💬 Parent Speak</a><a href="contact.html">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="min-height:480px">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">Admissions</span></div>
+    <h1>Join the White Roots<br><em>Family</em> for 2025–26</h1>
+    <p class="hero-sub">Every great journey begins with a single step. Begin your child's lifelong love for learning at White Roots Academy — a warm, nurturing home where they will truly bloom.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">📅 2025–26 Open</div>
+      <div class="hero-pill">⚡ Seats Filling Fast</div>
+      <div class="hero-pill">📞 Quick Response</div>
+    </div>
+    <div class="seats-bar">
+      <span class="seats-label">⚡ Seats Available</span>
+      <div class="seats-track"><div class="seats-fill" style="width:70%"></div></div>
+      <span class="seats-label">30% Remaining</span>
+    </div>
+  </div>
+  <div style="position:relative;z-index:2;display:flex;flex-direction:column;gap:1rem">
+    <div style="background:rgba(255,255,255,.12);border-radius:24px;padding:2rem;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);max-width:320px">
+      <p style="color:rgba(255,255,255,.6);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:1.25rem">Quick Stats</p>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.875rem"><span style="color:rgba(255,255,255,.7);font-size:14px">Age of Entry</span><span style="color:#fff;font-weight:700">2–5 Years</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.875rem"><span style="color:rgba(255,255,255,.7);font-size:14px">Batch Size</span><span style="color:#fff;font-weight:700">Max 15 Kids</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:.875rem"><span style="color:rgba(255,255,255,.7);font-size:14px">Class Timings</span><span style="color:#fff;font-weight:700">9 AM–1 PM</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:rgba(255,255,255,.7);font-size:14px">Response Time</span><span style="color:var(--yellow);font-weight:700">Within 4 Hours</span></div>
+      </div>
+    </div>
+    <a href="#enquiry-form" class="btn btn-white" style="text-align:center;justify-content:center">📋 Fill Enquiry Form →</a>
+  </div>
+</div>
+
+<!-- PROGRAMS SELECT -->
+<section class="prog-select">
+  <div style="text-align:center;margin-bottom:.5rem">
+    <div class="section-tag" style="display:inline-flex">🌱 Choose Program</div>
+    <h2 class="section-title reveal">Which Program Is<br>Right for Your Child?</h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Click on the program to select it — the enquiry form below will auto-fill.</p>
+  </div>
+  <div class="prog-select-grid">
+    <div class="prog-card reveal rd1" onclick="selectProg(this)">
+      <span class="pc-icon">🌱</span>
+      <div class="pc-age">Ages 2–3</div>
+      <div class="pc-name">Sprouting Seeds</div>
+      <p class="pc-desc">Sensory-rich, play-based program for toddlers making their first school experience a joyful, warm adventure.</p>
+      <div class="pc-slots"><span class="slot-dot slot-green"></span><span style="color:var(--green);font-size:13px;font-weight:700">5 Seats Remaining</span></div>
+    </div>
+    <div class="prog-card reveal rd2" onclick="selectProg(this)">
+      <span class="pc-icon">🌿</span>
+      <div class="pc-age">Ages 3–4</div>
+      <div class="pc-name">Little Saplings</div>
+      <p class="pc-desc">Building independence, creativity, and social confidence through structured yet joyful daily explorations.</p>
+      <div class="pc-slots"><span class="slot-dot slot-orange"></span><span style="color:var(--orange);font-size:13px;font-weight:700">3 Seats Remaining</span></div>
+    </div>
+    <div class="prog-card reveal rd3" onclick="selectProg(this)">
+      <span class="pc-icon">🌳</span>
+      <div class="pc-age">Ages 4–5</div>
+      <div class="pc-name">Budding Branches</div>
+      <p class="pc-desc">Comprehensive school readiness with literacy, numeracy, and all 21st century skills for confident Grade 1 entry.</p>
+      <div class="pc-slots"><span class="slot-dot slot-green"></span><span style="color:var(--green);font-size:13px;font-weight:700">7 Seats Remaining</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISSION PROCESS -->
+<section class="process">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag" style="display:inline-flex">🗺️ The Journey</div>
+    <h2 class="section-title reveal">Simple, Warm Admission<br><em>Process</em></h2>
+    <p class="section-sub reveal" style="max-width:460px;margin:.5rem auto 0">We've made admissions as simple and welcoming as our school itself. Here's how it works.</p>
+  </div>
+  <div class="steps-wrap" style="max-width:720px;margin:3rem auto 0">
+    <div class="steps-line"></div>
+    <div class="step-item reveal rd1"><div class="step-circle sc-1">📝</div><div class="step-content"><h4>Step 1: Fill the Enquiry Form</h4><p>Complete the form below or call us directly. Our admissions team will reach out within 4 working hours to answer every question.</p><span class="step-tag" style="background:var(--green-pale);color:var(--green)">⏱ 5 Minutes</span></div></div>
+    <div class="step-item reveal rd2"><div class="step-circle sc-2">🏫</div><div class="step-content"><h4>Step 2: Campus Visit & Orientation</h4><p>Come experience the magic of White Roots firsthand. Meet teachers, explore classrooms, and let your child spend a morning with us.</p><span class="step-tag" style="background:var(--orange-pale);color:var(--orange)">📅 Within 3 Days</span></div></div>
+    <div class="step-item reveal rd3"><div class="step-circle sc-3">💬</div><div class="step-content"><h4>Step 3: Parent–Principal Conversation</h4><p>A warm one-on-one conversation with our Principal to understand your child's unique needs and how we can best support their journey.</p><span class="step-tag" style="background:var(--sky-pale);color:#2a8aaa)">⏱ 30 Minutes</span></div></div>
+    <div class="step-item reveal rd4"><div class="step-circle sc-4">📋</div><div class="step-content"><h4>Step 4: Complete Registration</h4><p>Fill the simple one-page registration form and bring one recent photo of your child. That's all — we've kept it stress-free and paperless as much as possible!</p><span class="step-tag" style="background:var(--purple-pale);color:var(--purple)">✅ Super Simple</span></div></div>
+    <div class="step-item reveal rd5"><div class="step-circle sc-5">🎉</div><div class="step-content"><h4>Step 5: Welcome to White Roots!</h4><p>Your child receives their personalized welcome kit, name tag, and their journey begins! We handle the transition with warmth and care.</p><span class="step-tag" style="background:var(--green-pale);color:var(--green)">🌱 First Day Magic</span></div></div>
+  </div>
+</section>
+
+<!-- ENQUIRY FORM -->
+<section class="form-section" id="enquiry-form">
+  <div style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag green" style="display:inline-flex">📋 Enquire Now</div>
+    <h2 class="section-title reveal">Begin Your Child's<br><em>Journey</em> Today</h2>
+    <p class="section-sub reveal" style="max-width:460px;margin:.5rem auto 0">Fill this short form and we'll get back to you within 4 hours — we promise!</p>
+  </div>
+  <div class="form-card">
+    <form id="form-content"
+          action="https://formspree.io/f/whitefield@whiterootsacademy.com"
+          method="POST"
+          onsubmit="return handleAdmissionSubmit(event)">
+      <input type="hidden" name="_subject" value="New Admission Enquiry — White Roots Academy" />
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--dark);margin-bottom:1.75rem">Admission Enquiry <span style="font-size:.875rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400">— 2025–26</span></h3>
+      <div class="form-row" style="margin-bottom:1.25rem">
+        <div class="form-group"><label>Parent / Guardian Name *</label><input type="text" name="parent_name" placeholder="Your full name" required /></div>
+        <div class="form-group"><label>Child's Name *</label><input type="text" name="child_name" placeholder="Child's first name" required /></div>
+      </div>
+      <div class="form-row" style="margin-bottom:1.25rem">
+        <div class="form-group"><label>Child's Age *</label><input type="text" name="child_age" placeholder="e.g., 3 years 2 months" required /></div>
+        <div class="form-group"><label>Program Interest *</label>
+          <select name="program" required>
+            <option value="">— Select a Program —</option>
+            <option value="Sprouting Seeds (Ages 2–3)">🌱 Sprouting Seeds (Ages 2–3)</option>
+            <option value="Little Saplings (Ages 3–4)">🌿 Little Saplings (Ages 3–4)</option>
+            <option value="Budding Branches (Ages 4–5)">🌳 Budding Branches (Ages 4–5)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row" style="margin-bottom:1.25rem">
+        <div class="form-group"><label>Mobile Number *</label><input type="tel" name="mobile" placeholder="+91 00000 00000" required /></div>
+        <div class="form-group"><label>Email Address</label><input type="email" name="email" placeholder="your@email.com" /></div>
+      </div>
+      <div class="form-group" style="margin-bottom:1.75rem"><label>Any Questions for Us?</label><textarea name="message" placeholder="Ask us anything — timing, curriculum, fees, or anything else on your mind!"></textarea></div>
+      <!-- reCAPTCHA v2 -->
+      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" style="margin-bottom:1.5rem"></div>
+      <hr class="form-divider">
+      <div class="form-submit-area">
+        <button type="submit" class="btn btn-primary" style="font-size:16px;padding:16px 44px">Send My Enquiry 🚀</button>
+        <p class="form-note">🔒 Your information is completely private. We never share your data.<br>⏱ We typically respond within 4 working hours.</p>
+      </div>
+    </form>
+    <div id="form-success">
+      <div class="success-icon">🎉</div>
+      <h3>Enquiry Sent Successfully!</h3>
+      <p>Thank you! Our admissions team will reach out to you within 4 working hours. We're so excited to welcome your family to White Roots!</p>
+      <a href="index.html" class="btn btn-green">← Back to Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEES -->
+<section class="fees">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag" style="display:inline-flex">💰 Fee Structure</div>
+    <h2 class="section-title reveal">Transparent &amp; Thoughtful<br><em>Fee Structure</em></h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Quality early childhood education that's genuinely accessible. No hidden charges, ever.</p>
+  </div>
+  <div class="fees-grid">
+    <div class="fee-card fc-gr reveal rd1">
+      <div class="fee-prog-name">Sprouting Seeds · Ages 2–3</div>
+      <div class="fee-amount">₹45,000</div>
+      <div class="fee-period">per annum · includes all materials</div>
+      <div class="fee-includes">
+        <div class="fi">Play-based full curriculum</div>
+        <div class="fi">Art supplies & materials</div>
+        <div class="fi">Daily snacks</div>
+        <div class="fi">Monthly progress report</div>
+        <div class="fi">Parent-teacher meets</div>
+      </div>
+      <a href="#enquiry-form" class="btn btn-green" style="width:100%;justify-content:center">Enquire Now →</a>
+      <p class="fee-note">Registration: ₹5,000 (one-time) · Refundable deposit: ₹10,000</p>
+    </div>
+    <div class="fee-card fc-or reveal rd2">
+      <div class="fee-prog-name">Little Saplings · Ages 3–4</div>
+      <div class="fee-amount">₹50,000</div>
+      <div class="fee-period">per annum · includes all materials</div>
+      <div class="fee-includes">
+        <div class="fi">Full holistic curriculum</div>
+        <div class="fi">Art, music & drama</div>
+        <div class="fi">Daily healthy snacks</div>
+        <div class="fi">Detailed growth reports</div>
+        <div class="fi">Workshop participation</div>
+        <div class="fi">Year-end showcase</div>
+      </div>
+      <a href="#enquiry-form" class="btn btn-primary" style="width:100%;justify-content:center">Enquire Now →</a>
+      <p class="fee-note">Registration: ₹5,000 (one-time) · Refundable deposit: ₹10,000</p>
+    </div>
+    <div class="fee-card fc-pu reveal rd3">
+      <div class="fee-prog-name">Budding Branches · Ages 4–5</div>
+      <div class="fee-amount">₹55,000</div>
+      <div class="fee-period">per annum · includes all materials</div>
+      <div class="fee-includes">
+        <div class="fi">School-readiness curriculum</div>
+        <div class="fi">21st century skills program</div>
+        <div class="fi">STEM & science activities</div>
+        <div class="fi">Portfolio-based assessment</div>
+        <div class="fi">Grade 1 bridge program</div>
+        <div class="fi">Year-end graduation</div>
+      </div>
+      <a href="#enquiry-form" class="btn" style="background:var(--purple);color:#fff;width:100%;justify-content:center">Enquire Now →</a>
+      <p class="fee-note">Registration: ₹5,000 (one-time) · Refundable deposit: ₹10,000</p>
+    </div>
+  </div>
+  <p style="text-align:center;font-size:13px;color:var(--muted);margin-top:2rem">💡 Sibling discounts available. Payment plans (quarterly/half-yearly) offered. Contact us for details.</p>
+</section>
+
+<!-- FAQs -->
+<section class="faqs">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag green" style="display:inline-flex">❓ FAQ</div>
+    <h2 class="section-title reveal">Questions Parents<br>Often Ask</h2>
+  </div>
+  <div class="faq-list" id="faq-list">
+    <div class="faq-item"><div class="faq-q">What is the admission age cutoff? <span class="faq-arrow">⌄</span></div><div class="faq-a">Children must be 2 years old by June 1, 2025 for Sprouting Seeds; 3 years for Little Saplings; and 4 years for Budding Branches. We do consider children who are close to the age on a case-by-case basis.</div></div>
+    <div class="faq-item"><div class="faq-q">Do you offer a trial class before enrollment? <span class="faq-arrow">⌄</span></div><div class="faq-a">Absolutely! We invite all families for a 2-hour complimentary trial morning where your child can experience the classroom, meet teachers, and you can observe the environment firsthand. This is part of our campus visit process.</div></div>
+    <div class="faq-item"><div class="faq-q">What documents are needed for registration? <span class="faq-arrow">⌄</span></div><div class="faq-a">Just three things: child's birth certificate (original + copy), one recent passport-size photograph of the child, and the completed registration form. We keep it simple — no stress!</div></div>
+    <div class="faq-item"><div class="faq-q">Is after-school care available? <span class="faq-arrow">⌄</span></div><div class="faq-a">Yes! We offer after-school care from 1 PM to 6 PM with supervised free play, creative activities, and a healthy snack. This can be added to any of our programs at an additional fee of ₹12,000/annum.</div></div>
+    <div class="faq-item"><div class="faq-q">Is there a transport facility? <span class="faq-arrow">⌄</span></div><div class="faq-a">We currently do not have school transport. However, we are happy to connect you with trusted third-party school cab services used by many of our families in the Whitefield area.</div></div>
+    <div class="faq-item"><div class="faq-q">How do you communicate with parents? <span class="faq-arrow">⌄</span></div><div class="faq-a">We use a dedicated parent communication app for daily updates, photos, and learning highlights. Monthly written progress reports, termly parent-teacher conferences, and regular parent workshops keep you deeply connected to your child's journey.</div></div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>The Seat Waits for<br>Your Child</h2>
+  <p>Don't let the opportunity pass. Reach out today and we'll take it from there.</p>
+  <div class="cta-btns">
+    <a href="#enquiry-form" class="btn btn-white">📋 Fill Enquiry Form</a>
+    <a href="tel:+917676796303" class="btn btn-outline-white">📞 Call +91-7676796303</a>
+    <a href="https://wa.me/917676796303" target="_blank" class="btn" style="background:#25d366;color:#fff">💬 WhatsApp Us</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div></div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#">📘</a><a href="#">📸</a><a href="#">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds</a><a href="curriculum.html">Little Saplings</a><a href="curriculum.html">Budding Branches</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div></div>
+</footer>
+<div class="footer-bottom"><p>© 2025 White Roots Academy. All rights reserved.</p><p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p></div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="main.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// Program card selection — auto-fills the select dropdown
+function selectProg(el) {
+  document.querySelectorAll('.prog-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  const name = el.querySelector('.pc-name').textContent.trim();
+  const sel = document.querySelector('[name="program"]');
+  if (sel) {
+    for (let opt of sel.options) { if (opt.text.includes(name.split(' ')[0])) { sel.value = opt.value; break; } }
+  }
+  document.getElementById('enquiry-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Formspree async submit
+async function handleAdmissionSubmit(e) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('[type=submit]');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+  try {
+    const data = new FormData(form);
+    const res = await fetch('https://formspree.io/f/whitefield@whiterootsacademy.com', { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+    if (res.ok) {
+      form.style.display = 'none';
+      const success = document.getElementById('form-success');
+      success.style.display = 'flex';
+    } else {
+      btn.textContent = 'Send My Enquiry 🚀';
+      btn.disabled = false;
+      alert('Something went wrong. Please call us directly on +91-7676796303.');
+    }
+  } catch(err) {
+    btn.textContent = 'Send My Enquiry 🚀';
+    btn.disabled = false;
+    alert('Network error. Please call us on +91-7676796303.');
+  }
+  return false;
+}
+</script>
+</body>
+</html>

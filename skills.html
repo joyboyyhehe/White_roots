@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="21st Century Skills at White Roots Academy — Critical thinking, creativity, collaboration, communication, and future-ready skills for young learners.">
+<title>21st Century Skills — White Roots Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.page-hero { background:linear-gradient(135deg,#0a1a2e 0%,#1a3a6e 55%,#2a5aa0 100%); }
+
+/* THE 4Cs */
+.four-cs { background:#fff; }
+.cs-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:3rem; }
+.cs-card {
+  border-radius:28px; padding:2.75rem; position:relative; overflow:hidden;
+  cursor:default; transition:all .4s var(--bounce);
+  border:1px solid transparent;
+}
+.cs-card:hover { transform:translateY(-10px) scale(1.01); }
+.cs-card-1 { background:linear-gradient(135deg,#e8f5ff 0%,#c8e4ff 100%); }
+.cs-card-2 { background:linear-gradient(135deg,var(--orange-pale) 0%,#ffd4a0 100%); }
+.cs-card-3 { background:linear-gradient(135deg,var(--green-pale) 0%,#b0e8c8 100%); }
+.cs-card-4 { background:linear-gradient(135deg,var(--purple-pale) 0%,#d0b8ff 100%); }
+.cs-card:hover .cs-icon-big { transform:scale(1.15) rotate(-5deg); }
+.cs-icon-big { font-size:64px; display:block; margin-bottom:1.25rem; transition:transform .4s var(--bounce); }
+.cs-c-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  padding:6px 16px; border-radius:100px; font-size:12px; font-weight:800;
+  letter-spacing:1px; text-transform:uppercase; margin-bottom:1rem;
+}
+.cs-card-1 .cs-c-badge { background:rgba(30,100,210,.12); color:#1e64d2; }
+.cs-card-2 .cs-c-badge { background:rgba(240,116,39,.15); color:var(--orange); }
+.cs-card-3 .cs-c-badge { background:rgba(26,107,60,.12); color:var(--green); }
+.cs-card-4 .cs-c-badge { background:rgba(124,92,191,.15); color:var(--purple); }
+.cs-card h3 { font-family:'Playfair Display',serif; font-size:1.75rem; color:var(--dark); margin-bottom:.75rem; }
+.cs-card > p { font-size:14.5px; color:var(--muted); line-height:1.8; margin-bottom:1.5rem; }
+.cs-activities { display:flex; flex-direction:column; gap:.75rem; }
+.cs-act {
+  display:flex; align-items:center; gap:12px; padding:12px 16px;
+  background:rgba(255,255,255,.7); border-radius:12px; font-size:13.5px; font-weight:500;
+  color:var(--text); transition:var(--transition); cursor:default;
+  border:1px solid rgba(255,255,255,.8);
+}
+.cs-act:hover { background:#fff; transform:translateX(6px); box-shadow:var(--shadow-sm); }
+.cs-act-num { width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0; }
+.cs-card-1 .cs-act-num { background:rgba(30,100,210,.15); color:#1e64d2; }
+.cs-card-2 .cs-act-num { background:rgba(240,116,39,.15); color:var(--orange); }
+.cs-card-3 .cs-act-num { background:rgba(26,107,60,.15); color:var(--green); }
+.cs-card-4 .cs-act-num { background:rgba(124,92,191,.15); color:var(--purple); }
+
+/* SKILL WHEEL */
+.skill-wheel { background:var(--cream); }
+.wheel-content { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+.wheel-visual {
+  position:relative; width:360px; height:360px; margin:0 auto;
+  animation:rotateSlow 25s linear infinite;
+}
+.wheel-visual-inner { position:absolute; inset:0; }
+.wheel-center {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:130px; height:130px; border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--green-light));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  box-shadow:0 0 0 16px rgba(26,107,60,.1), 0 0 0 32px rgba(26,107,60,.05);
+  z-index:10; animation:rotateSlow 25s linear infinite reverse; text-align:center;
+}
+.wheel-center span { font-size:32px; }
+.wheel-center p { font-size:11px; color:#fff; font-weight:700; margin-top:4px; }
+.wheel-segment {
+  position:absolute; width:72px; height:72px; border-radius:50%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  font-size:24px; gap:4px; z-index:5;
+  box-shadow:var(--shadow-md); transition:var(--transition); cursor:default;
+  animation:rotateSlow 25s linear infinite reverse;
+}
+.wheel-segment:hover { transform: scale(1.2) !important; }
+.ws-1 { top:0; left:50%; margin-left:-36px; background:linear-gradient(135deg,#e8f5ff,#c0dcff); }
+.ws-2 { top:50%; right:0; margin-top:-36px; background:linear-gradient(135deg,var(--orange-pale),#ffd0a0); }
+.ws-3 { bottom:0; left:50%; margin-left:-36px; background:linear-gradient(135deg,var(--green-pale),#b0e8c8); }
+.ws-4 { top:50%; left:0; margin-top:-36px; background:linear-gradient(135deg,var(--purple-pale),#d0b8ff); }
+.ws-5 { top:18%; right:12%; background:linear-gradient(135deg,var(--teal-pale),#b0e8e0); }
+.ws-6 { bottom:18%; right:12%; background:linear-gradient(135deg,var(--pink-pale),#f8c8e0); }
+.ws-7 { bottom:18%; left:12%; background:linear-gradient(135deg,#fff8e0,#ffeea0); }
+.ws-8 { top:18%; left:12%; background:linear-gradient(135deg,#ffe8e8,#ffc8c8); }
+.ws-label { font-size:8px; font-weight:700; color:var(--dark); text-align:center; line-height:1.2; }
+.wheel-ring {
+  position:absolute; inset:20px; border-radius:50%;
+  border:2px dashed rgba(26,107,60,.2);
+}
+.skill-list-col { display:flex; flex-direction:column; gap:1.25rem; }
+.skill-item {
+  display:flex; gap:1rem; align-items:flex-start; padding:1.25rem 1.5rem;
+  border-radius:18px; border:1px solid var(--border); background:#fff;
+  transition:var(--transition); cursor:default;
+}
+.skill-item:hover { border-color:rgba(26,107,60,.25); background:var(--green-pale); transform:translateX(8px); }
+.skill-item:hover .sk-icon { background:var(--green); filter:saturate(0) brightness(10); }
+.sk-icon { width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; transition:var(--transition); }
+.sk-1 { background:#e8f5ff; }
+.sk-2 { background:var(--orange-pale); }
+.sk-3 { background:var(--green-pale); }
+.sk-4 { background:var(--purple-pale); }
+.sk-5 { background:var(--teal-pale); }
+.skill-text h4 { font-size:15px; font-weight:700; color:var(--dark); margin-bottom:4px; }
+.skill-text p { font-size:13px; color:var(--muted); line-height:1.65; }
+
+/* HOW WE TEACH */
+.how-teach { background:#fff; }
+.ht-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; margin-top:3rem; }
+.ht-card {
+  border-radius:24px; padding:2.25rem; border:1px solid var(--border);
+  transition:var(--transition); cursor:default; position:relative; overflow:hidden;
+}
+.ht-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--green); opacity:0; transition:opacity .3s; }
+.ht-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-lg); }
+.ht-card:hover::before { opacity:1; }
+.ht-num {
+  width:44px; height:44px; border-radius:14px; background:var(--green-pale);
+  display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif;
+  font-size:1.2rem; font-weight:700; color:var(--green); margin-bottom:1.25rem;
+  transition:var(--transition);
+}
+.ht-card:hover .ht-num { background:var(--green); color:#fff; transform:scale(1.1) rotate(-5deg); }
+.ht-card h3 { font-size:1.15rem; font-weight:700; color:var(--dark); margin-bottom:.625rem; }
+.ht-card p { font-size:13.5px; color:var(--muted); line-height:1.75; }
+.ht-examples { margin-top:1.25rem; display:flex; flex-wrap:wrap; gap:.5rem; }
+.ht-ex { font-size:12px; background:var(--cream); padding:5px 12px; border-radius:100px; color:var(--text); border:1px solid var(--border); font-weight:500; }
+
+/* FUTURE READY */
+.future-ready {
+  background:linear-gradient(135deg,#0a1a2e 0%,#1e3a6e 50%,#0a1a2e 100%);
+  padding:6rem 3rem; position:relative; overflow:hidden;
+}
+.future-ready::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at 50% 50%, rgba(100,150,255,.08) 0%, transparent 70%);
+}
+.fr-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; position:relative; z-index:1; }
+.fr-visual { display:flex; flex-direction:column; gap:1rem; }
+.fr-skill-bar { display:flex; align-items:center; gap:1rem; }
+.fr-skill-label { width:140px; font-size:13px; font-weight:600; color:rgba(255,255,255,.85); flex-shrink:0; }
+.fr-bar-track { flex:1; height:8px; background:rgba(255,255,255,.1); border-radius:100px; overflow:hidden; }
+.fr-bar-fill { height:100%; border-radius:100px; transition:width 1.4s cubic-bezier(0.4,0,0.2,1); width:0; }
+.fr-bar-1 { background:linear-gradient(to right,#5b8cff,#a8c8ff); }
+.fr-bar-2 { background:linear-gradient(to right,var(--orange),var(--orange-light)); }
+.fr-bar-3 { background:linear-gradient(to right,var(--green),var(--green-light)); }
+.fr-bar-4 { background:linear-gradient(to right,var(--purple),#c0a0ff); }
+.fr-bar-5 { background:linear-gradient(to right,var(--teal),#60d8c8); }
+.fr-bar-val { width:36px; text-align:right; font-size:13px; font-weight:700; color:#fff; }
+.fr-text .section-title { color:#fff; }
+.fr-text .section-title em { color:var(--yellow); }
+.fr-outcomes { display:flex; flex-direction:column; gap:.75rem; margin-top:2rem; }
+.fr-outcome {
+  display:flex; align-items:center; gap:12px; padding:14px 18px;
+  background:rgba(255,255,255,.07); border-radius:14px;
+  border:1px solid rgba(255,255,255,.1); font-size:14px; color:rgba(255,255,255,.85);
+  font-weight:500; transition:var(--transition); cursor:default;
+}
+.fr-outcome:hover { background:rgba(255,255,255,.14); transform:translateX(6px); }
+.fr-outcome-icon { width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+
+@media(max-width:1024px){
+  .cs-grid{grid-template-columns:1fr}
+  .wheel-content{grid-template-columns:1fr}
+  .wheel-visual{width:280px;height:280px}
+  .ht-grid{grid-template-columns:1fr 1fr}
+  .fr-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .ht-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="nav-logo-real-img" /></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li>
+    <li><a href="curriculum.html">Curriculum</a></li>
+    <li><a href="skills.html" class="active">21st Century Skills</a></li>
+    <li><a href="admissions.html">Admissions</a></li><li><a href="parents.html">Parent Speak</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location.href='admissions.html#enquiry-form'"><span class="cta-dot"></span> Enquire Now</button>
+  <button class="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="nav-mobile">
+  <a href="index.html">🏠 Home</a><a href="about.html">🌿 About Us</a>
+  <a href="curriculum.html">📚 Curriculum</a>
+  <a href="skills.html" class="active">⚡ 21st Century Skills</a>
+  <a href="admissions.html">📋 Admissions</a><a href="parents.html">💬 Parent Speak</a>
+  <a href="contact.html">📍 Contact</a>
+  <button class="nav-cta btn" onclick="window.location.href='admissions.html#enquiry-form'">Enquire Now →</button>
+</div>
+
+<!-- HERO -->
+<div class="page-hero" style="min-height:500px">
+  <div class="particles-wrap"></div>
+  <div class="hero-text">
+    <div class="page-breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current">21st Century Skills</span></div>
+    <h1>Raising Children <em>Ready</em><br>for Tomorrow's World</h1>
+    <p class="hero-sub">The world of 2040 will look nothing like today. We prepare children not just with knowledge — but with the adaptability, creativity, and empathy to thrive in any future.</p>
+    <div class="hero-pills">
+      <div class="hero-pill">🧠 Critical Thinking</div>
+      <div class="hero-pill">🎨 Creativity</div>
+      <div class="hero-pill">🤝 Collaboration</div>
+      <div class="hero-pill">💬 Communication</div>
+    </div>
+    <a href="curriculum.html" class="btn btn-white" style="margin-top:.5rem">📚 View Full Curriculum →</a>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;position:relative;z-index:2">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:340px">
+      <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:1.5rem;text-align:center;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)">
+        <div style="font-size:40px;margin-bottom:.5rem">🧠</div>
+        <div style="color:#fff;font-weight:700;font-size:13px">Critical<br>Thinking</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:1.5rem;text-align:center;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)">
+        <div style="font-size:40px;margin-bottom:.5rem">🎨</div>
+        <div style="color:#fff;font-weight:700;font-size:13px">Creativity<br>&amp; Innovation</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:1.5rem;text-align:center;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)">
+        <div style="font-size:40px;margin-bottom:.5rem">🤝</div>
+        <div style="color:#fff;font-weight:700;font-size:13px">Collaboration<br>&amp; Teamwork</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:18px;padding:1.5rem;text-align:center;border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)">
+        <div style="font-size:40px;margin-bottom:.5rem">💬</div>
+        <div style="color:#fff;font-weight:700;font-size:13px">Communication<br>Skills</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4 Cs -->
+<section class="four-cs">
+  <div style="text-align:center;margin-bottom:1rem">
+    <div class="section-tag" style="display:inline-flex">⚡ The 4 Cs</div>
+    <h2 class="section-title reveal">The Four Pillars of<br><em>Future-Ready</em> Learning</h2>
+    <p class="section-sub reveal" style="max-width:520px;margin:.5rem auto 0">Based on global frameworks from OECD, P21, and WEF — these four competencies are woven into everything we do.</p>
+  </div>
+  <div class="cs-grid">
+    <div class="cs-card cs-card-1 reveal rd1">
+      <span class="cs-icon-big">🧠</span>
+      <div class="cs-c-badge">Critical Thinking</div>
+      <h3>Think Deeply.<br>Question Everything.</h3>
+      <p>We help children develop the habit of questioning, analyzing, and evaluating information — laying the foundation of logical, reasoned thinking from age 2.</p>
+      <div class="cs-activities">
+        <div class="cs-act"><span class="cs-act-num">1</span> Socratic questioning during circle time</div>
+        <div class="cs-act"><span class="cs-act-num">2</span> Problem-solving puzzles and challenges</div>
+        <div class="cs-act"><span class="cs-act-num">3</span> Science experiments with hypothesis forming</div>
+        <div class="cs-act"><span class="cs-act-num">4</span> "What if?" storytelling adventures</div>
+      </div>
+    </div>
+    <div class="cs-card cs-card-2 reveal rd2">
+      <span class="cs-icon-big">🎨</span>
+      <div class="cs-c-badge">Creativity</div>
+      <h3>Imagine Freely.<br>Create Boldly.</h3>
+      <p>We preserve and amplify each child's natural creativity — because innovation is the most valuable skill of the 21st century economy.</p>
+      <div class="cs-activities">
+        <div class="cs-act"><span class="cs-act-num">1</span> Open-ended art with unlimited materials</div>
+        <div class="cs-act"><span class="cs-act-num">2</span> Dramatic play and storytelling theater</div>
+        <div class="cs-act"><span class="cs-act-num">3</span> Invention & design challenges (mini maker space)</div>
+        <div class="cs-act"><span class="cs-act-num">4</span> Music composition and rhythm creation</div>
+      </div>
+    </div>
+    <div class="cs-card cs-card-3 reveal rd3">
+      <span class="cs-icon-big">🤝</span>
+      <div class="cs-c-badge">Collaboration</div>
+      <h3>Work Together.<br>Achieve More.</h3>
+      <p>The greatest work of the 21st century happens in teams. We build collaboration skills through intentional group experiences, conflict resolution, and shared goals.</p>
+      <div class="cs-activities">
+        <div class="cs-act"><span class="cs-act-num">1</span> Partner and small-group projects</div>
+        <div class="cs-act"><span class="cs-act-num">2</span> Collaborative murals and building challenges</div>
+        <div class="cs-act"><span class="cs-act-num">3</span> Peace-making circles for conflict resolution</div>
+        <div class="cs-act"><span class="cs-act-num">4</span> Community helper projects and service learning</div>
+      </div>
+    </div>
+    <div class="cs-card cs-card-4 reveal rd4">
+      <span class="cs-icon-big">💬</span>
+      <div class="cs-c-badge">Communication</div>
+      <h3>Speak Up.<br>Listen Deeply.</h3>
+      <p>We build confident communicators — children who can express ideas clearly, listen with empathy, and connect meaningfully with the world around them.</p>
+      <div class="cs-activities">
+        <div class="cs-act"><span class="cs-act-num">1</span> Daily show & tell and sharing circles</div>
+        <div class="cs-act"><span class="cs-act-num">2</span> Multilingual language exposure</div>
+        <div class="cs-act"><span class="cs-act-num">3</span> Public speaking through mini presentations</div>
+        <div class="cs-act"><span class="cs-act-num">4</span> Active listening games and debates</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILL WHEEL -->
+<section class="skill-wheel">
+  <div style="text-align:center;margin-bottom:4rem">
+    <div class="section-tag" style="display:inline-flex">🎯 8 Core Competencies</div>
+    <h2 class="section-title reveal">The Full Spectrum of <em>Skills</em><br>We Nurture</h2>
+  </div>
+  <div class="wheel-content">
+    <div class="wheel-visual">
+      <div class="wheel-ring"></div>
+      <div class="wheel-center"><span>🌱</span><p>White Roots<br>Learner</p></div>
+      <div class="wheel-segment ws-1"><span>🧠</span><div class="ws-label">Critical<br>Thinking</div></div>
+      <div class="wheel-segment ws-2"><span>🎨</span><div class="ws-label">Creativity</div></div>
+      <div class="wheel-segment ws-3"><span>🤝</span><div class="ws-label">Collaboration</div></div>
+      <div class="wheel-segment ws-4"><span>💬</span><div class="ws-label">Communication</div></div>
+      <div class="wheel-segment ws-5"><span>🔡</span><div class="ws-label">Literacy</div></div>
+      <div class="wheel-segment ws-6"><span>💡</span><div class="ws-label">Problem<br>Solving</div></div>
+      <div class="wheel-segment ws-7"><span>❤️</span><div class="ws-label">Empathy</div></div>
+      <div class="wheel-segment ws-8"><span>🔬</span><div class="ws-label">Curiosity</div></div>
+    </div>
+    <div class="skill-list-col">
+      <div class="skill-item reveal rd1"><div class="sk-icon sk-1">🔡</div><div class="skill-text"><h4>Digital & Information Literacy</h4><p>Age-appropriate tech literacy, safe media use, and understanding information in a digital world.</p></div></div>
+      <div class="skill-item reveal rd2"><div class="sk-icon sk-2">💡</div><div class="skill-text"><h4>Problem Solving & Resilience</h4><p>Teaching children that challenges are opportunities — and that persistence leads to breakthroughs.</p></div></div>
+      <div class="skill-item reveal rd3"><div class="sk-icon sk-3">❤️</div><div class="skill-text"><h4>Empathy & Global Citizenship</h4><p>Building awareness of the wider world — diversity, inclusion, environment, and shared humanity.</p></div></div>
+      <div class="skill-item reveal rd4"><div class="sk-icon sk-4">🔬</div><div class="skill-text"><h4>Scientific Curiosity & Inquiry</h4><p>Instilling the habit of wondering — of asking "why" and "how" and setting out to discover the answers.</p></div></div>
+      <div class="skill-item reveal rd5"><div class="sk-icon sk-5">🌱</div><div class="skill-text"><h4>Self-Management & Mindfulness</h4><p>Emotional regulation, focus, self-awareness, and healthy routines for lifelong mental wellness.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE TEACH -->
+<section class="how-teach">
+  <div style="text-align:center;margin-bottom:2.5rem">
+    <div class="section-tag green" style="display:inline-flex">🎓 Our Methodology</div>
+    <h2 class="section-title reveal">How We Actually<br><em>Teach</em> These Skills</h2>
+    <p class="section-sub reveal" style="max-width:480px;margin:.5rem auto 0">Skills aren't taught in isolation — they're integrated into every moment of a child's day at White Roots.</p>
+  </div>
+  <div class="ht-grid">
+    <div class="ht-card reveal rd1 card-3d"><div class="ht-num">01</div><h3>Project-Based Learning</h3><p>Children work on real, meaningful projects that span weeks — building all 4Cs simultaneously through authentic inquiry and creation.</p><div class="ht-examples"><span class="ht-ex">🌱 Garden Project</span><span class="ht-ex">🏙️ Mini City Build</span><span class="ht-ex">📚 Class Storybook</span></div></div>
+    <div class="ht-card reveal rd2 card-3d"><div class="ht-num">02</div><h3>Inquiry-Based Learning</h3><p>Teachers ask powerful questions rather than giving answers. Children develop the habit of genuine inquiry and self-directed discovery.</p><div class="ht-examples"><span class="ht-ex">❓ Wonder Walls</span><span class="ht-ex">🔬 Experiments</span><span class="ht-ex">🗺️ Nature Walks</span></div></div>
+    <div class="ht-card reveal rd3 card-3d"><div class="ht-num">03</div><h3>Collaborative Challenges</h3><p>Team-based challenges with real constraints and goals that require genuine cooperation, negotiation, and shared problem-solving.</p><div class="ht-examples"><span class="ht-ex">🏗️ Block Towers</span><span class="ht-ex">🎭 Drama Projects</span><span class="ht-ex">🎨 Murals</span></div></div>
+    <div class="ht-card reveal rd4 card-3d"><div class="ht-num">04</div><h3>Design Thinking</h3><p>A simplified design thinking framework (Empathize, Define, Ideate, Prototype, Test) introduced through age-appropriate challenges.</p><div class="ht-examples"><span class="ht-ex">🛠️ Prototype Tasks</span><span class="ht-ex">💡 Idea Journals</span><span class="ht-ex">🔄 Iterate</span></div></div>
+    <div class="ht-card reveal rd5 card-3d"><div class="ht-num">05</div><h3>Play-Based Integration</h3><p>The most powerful 21st century skills are built through purposeful play — every block, puzzle, and dramatic play scenario is a learning opportunity.</p><div class="ht-examples"><span class="ht-ex">🎮 Loose Parts</span><span class="ht-ex">🎭 Role Play</span><span class="ht-ex">🧩 Strategy Games</span></div></div>
+    <div class="ht-card reveal rd6 card-3d"><div class="ht-num">06</div><h3>Reflection & Metacognition</h3><p>We teach children to think about their own thinking — journaling, portfolio review, and guided reflection that builds self-awareness and growth mindset.</p><div class="ht-examples"><span class="ht-ex">📔 Learning Journals</span><span class="ht-ex">🪞 Self-Assessment</span><span class="ht-ex">⭐ Portfolios</span></div></div>
+  </div>
+</section>
+
+<!-- FUTURE READY -->
+<section class="future-ready progress-section">
+  <div class="fr-grid">
+    <div class="fr-text">
+      <div class="section-tag dark" style="display:inline-flex">🚀 Future Readiness</div>
+      <h2 class="section-title reveal" style="margin-top:.5rem">Every Child Leaves<br>Truly <em>Future-Ready</em></h2>
+      <p style="color:rgba(255,255,255,.7);font-size:15.5px;line-height:1.85;margin-bottom:2rem">When children leave White Roots for Grade 1, they carry far more than academic knowledge — they carry a mindset, a confidence, and a set of skills that will serve them for life.</p>
+      <div class="fr-outcomes">
+        <div class="fr-outcome"><div class="fr-outcome-icon">🧠</div>Thinks critically and questions assumptions</div>
+        <div class="fr-outcome"><div class="fr-outcome-icon">🎨</div>Creates with confidence and imagination</div>
+        <div class="fr-outcome"><div class="fr-outcome-icon">🤝</div>Collaborates and resolves conflicts peacefully</div>
+        <div class="fr-outcome"><div class="fr-outcome-icon">💬</div>Communicates ideas clearly and confidently</div>
+        <div class="fr-outcome"><div class="fr-outcome-icon">❤️</div>Shows empathy and respects diversity</div>
+        <div class="fr-outcome"><div class="fr-outcome-icon">🌱</div>Has a genuine love for learning</div>
+      </div>
+    </div>
+    <div class="fr-visual">
+      <div style="background:rgba(255,255,255,.08);border-radius:24px;padding:2.5rem;border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(10px)">
+        <p style="font-size:13px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2rem">Skill Development by Graduation</p>
+        <div class="fr-skill-bar" style="margin-bottom:1.25rem"><span class="fr-skill-label">Critical Thinking</span><div class="fr-bar-track"><div class="fr-bar-fill fr-bar-1 pb-fill" data-w="90"></div></div><span class="fr-bar-val">90%</span></div>
+        <div class="fr-skill-bar" style="margin-bottom:1.25rem"><span class="fr-skill-label">Creativity</span><div class="fr-bar-track"><div class="fr-bar-fill fr-bar-2 pb-fill" data-w="95"></div></div><span class="fr-bar-val">95%</span></div>
+        <div class="fr-skill-bar" style="margin-bottom:1.25rem"><span class="fr-skill-label">Collaboration</span><div class="fr-bar-track"><div class="fr-bar-fill fr-bar-3 pb-fill" data-w="88"></div></div><span class="fr-bar-val">88%</span></div>
+        <div class="fr-skill-bar" style="margin-bottom:1.25rem"><span class="fr-skill-label">Communication</span><div class="fr-bar-track"><div class="fr-bar-fill fr-bar-4 pb-fill" data-w="92"></div></div><span class="fr-bar-val">92%</span></div>
+        <div class="fr-skill-bar" style="margin-bottom:1.25rem"><span class="fr-skill-label">Empathy</span><div class="fr-bar-track"><div class="fr-bar-fill fr-bar-5 pb-fill" data-w="94"></div></div><span class="fr-bar-val">94%</span></div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border-radius:16px;padding:1.25rem;border:1px solid rgba(255,255,255,.1);margin-top:1rem;text-align:center">
+        <p style="font-size:1.8rem;font-weight:900;color:#fff;font-family:'Playfair Display',serif;margin-bottom:4px">98%</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.6)">of White Roots graduates excel in their first year of formal schooling</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2>Build Your Child's<br>Future Today</h2>
+  <p>21st century skills start at age 2. Don't wait — enroll now for 2025–26.</p>
+  <div class="cta-btns">
+    <a href="admissions.html" class="btn btn-white">📋 Apply for Admission</a>
+    <a href="curriculum.html" class="btn btn-outline-white">📚 View Curriculum</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo"><div class="footer-logo-img-real"><img src="logo/logo.png" alt="White Roots Academy" class="footer-logo-real-img" /></div></div>
+    <p>Nurturing young minds in Whitefield, Bangalore since 2017.</p>
+    <div class="footer-social"><a href="#">📘</a><a href="#">📸</a><a href="#">💬</a></div>
+  </div>
+  <div class="footer-col"><h4>Explore</h4><a href="index.html">Home</a><a href="about.html">About Us</a><a href="curriculum.html">Curriculum</a><a href="skills.html">21st Century Skills</a><a href="admissions.html">Admissions</a><a href="parents.html">Parent Speak</a><a href="contact.html">Contact</a></div>
+  <div class="footer-col"><h4>Programs</h4><a href="curriculum.html">Sprouting Seeds</a><a href="curriculum.html">Little Saplings</a><a href="curriculum.html">Budding Branches</a><a href="curriculum.html">Summer Camp</a></div>
+  <div class="footer-col"><h4>Contact</h4><div class="footer-contact-item">📍 Hagadur, Whitefield, Blr</div><div class="footer-contact-item">📞 +91-7676796303</div><div class="footer-contact-item">📧 whitefield@whiterootsacademy.com</div></div>
+</footer>
+<div class="footer-bottom"><p>© 2025 White Roots Academy. All rights reserved.</p><p style="color:rgba(255,255,255,.2)">Designed with ❤️ for little learners</p></div>
+
+<button class="wa-btn" onclick="window.open('https://wa.me/917676796303','_blank')" aria-label="WhatsApp"><div class="wa-pulse"></div>💬</button>
+<script src="main.js"></script>
+</body>
+</html>
