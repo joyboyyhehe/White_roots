@@ -465,9 +465,11 @@ async function handleAdmissionSubmit(e) {
       success.style.display = 'flex';
     } else {
       const json = await res.json().catch(() => ({}));
+      const msg = (json.errors && json.errors.map(e => e.message).join(', ')) || json.error || 'Unknown error';
+      console.error('Formspree error:', msg, json);
       btn.textContent = 'Send My Enquiry 🚀';
       btn.disabled = false;
-      alert('Something went wrong. Please try again or call us on +91-7676796303.');
+      alert('Submission failed: ' + msg + '\n\nOr call us on +91-7676796303.');
     }
   } catch(err) {
     btn.textContent = 'Send My Enquiry 🚀';
